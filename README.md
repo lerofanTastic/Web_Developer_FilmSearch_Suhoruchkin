@@ -1,1 +1,4 @@
-# Web_Developer_FilmSearch_Suhoruchkin
+Проект: приложение для поиска фильмов
+  Сухоручкин Егор
+  lerofanTastic
+  leroty@bk.ru
