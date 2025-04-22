@@ -17,15 +17,21 @@
         </div>
         <div class="headerCenter">
           <nav>
-            <ul>
-              <li>Фильмы</li>
-              <li>Сериалы</li>
+            <input
+              type="checkbox"
+              id="burger-checkbox"
+              class="burger-checkbox"
+            />
+            <label for="burger-checkbox" class="burger"></label>
+            <ul class="menu-list">
+              <li class="list"><a href="#" class="menu-item">Фильмы</a></li>
+              <li class="list"><a href="#" class="menu-item">Сериалы</a></li>
+              <li class="list">
+                <p>Светлая тема</p>
+                <input type="checkbox" class="theme-checkbox" />
+              </li>
             </ul>
           </nav>
-        </div>
-        <div class="headerRight">
-          <p>Светлая тема</p>
-          <input type="checkbox" class="theme-checkbox" />
         </div>
       </div>
       <div class="headerBottom">
@@ -63,7 +69,9 @@
       </div>
       <div class="search">
         <div class="searchBar">
-          <div><img class="searchBarIcon" src="/assets/lupa.png" alt="Поиск" /></div>
+          <div>
+            <img class="searchBarIcon" src="/assets/lupa.png" alt="Поиск" />
+          </div>
           <div class="dada">
             <input
               type="search"
@@ -102,4 +110,3 @@
     <script src="/script/index.js"></script>
   </body>
 </html>
-
