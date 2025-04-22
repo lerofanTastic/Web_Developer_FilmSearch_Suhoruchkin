@@ -28,17 +28,44 @@
           <input type="checkbox" class="theme-checkbox" />
         </div>
       </div>
-      <div class="headerBottom"> 
+      <div class="headerBottom">
         <div class="headerBottomLeft">
-            <h1>Что сегодня посмотреть?</h1>
+          <h1>Что сегодня посмотреть?</h1>
         </div>
-        <div class="headerBottomRight">
-            
-        </div>
+        <div class="headerBottomRight"></div>
       </div>
     </header>
-    <main></main>
+    <main>
+      <div class="carousel">
+        <img class="arrow" src="/assets/left-arrow.svg"/>
+        <div class="card">
+          <div class="rating"><p>9.8</p></div>
+          <div class="poster"><img class="posterImage" src="/assets/card1.png"/></div>
+          <div class="title"><p>Проклятое королевство</p></div>
+        </div>
+        <div class="card">
+          <div class="rating"><p>9.7</p></div>
+          <div class="poster"><img class="posterImage" src="/assets/card2.png"/></div>
+          <div class="title"><p>Код красный</p></div>
+        </div><div class="card">
+          <div class="rating"><p>8.7</p></div>
+          <div class="poster"><img class="posterImage" src="/assets/card3.png"/></div>
+          <div class="title"><p>Путеводная звезда</p></div>
+        </div>
+        <img class="arrow" src="/assets/right-arrow.svg" />
+      </div>
+      <div class="search">
+        <div class="searchBar">
+          <div><img class="searchBarIcon" src="/assets/lupa.png"/></div>
+          <div class="dada">
+            <input type="search" class="input" placeholder="Что сегодня посмотреть?" name="searchBar">
+          </div>
+          <div ><button class="button">Найти</button></div>
+          
+        </div>
+      </div>
+    </main>
     <footer></footer>
-    <script src="index.js"></script>
+    <script src="/script/index.js"></script>
   </body>
 </html>
