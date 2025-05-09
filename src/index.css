@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424; 
+}
+.nav-link-active{
+  color: white;
+  text-decoration: none;
+
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 800;
+}
+

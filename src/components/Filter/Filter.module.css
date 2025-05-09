@@ -1,0 +1,112 @@
+.mainLeft {
+    display: flex;
+    flex-direction: column;
+    width: 22.81vw;
+    background-color: black;
+  }
+  .filterHeader {
+    position: absolute;
+    visibility: hidden;
+  }
+  .filter {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5.83vw;
+    margin-left: 4.68vw;
+  }
+  .category {
+    display: flex;
+    flex-direction: column;
+    width: 15.625vw;
+    height: 6.875vw;
+    gap: 1.3vw;
+    margin-bottom: 2.6vw;
+  }
+  .category label {
+    margin: 0;
+    color: white;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 1.66vw;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin-left: 1.19vw;
+    /* margin-bottom: 50px; */
+  }
+  .category select {
+    width: 14.42vw;
+    height: 3.54vw;
+  
+    background: #1d1d1d;
+    border-radius: 0.52vw;
+    border: 0;
+    outline: none;
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 1.04vw;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #686868;
+    padding-left: 1.19vw;
+  }
+  @media (max-width: 720px) {
+    .mainLeft {
+        /* width: 720px; */
+        width: 100%;
+        height: 550px;
+        /* align-items: center; */
+        background-color: #1d1d1d;
+      }
+      .category {
+        width: 100%;
+        height: 70px;
+        align-items: center;
+      }
+      .category select {
+        background: black;
+    
+        width: 80vw;
+        height: 132px;
+        font-family: Inter;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        border-radius: 10px;
+      }
+      .category label {
+        align-self: normal;
+        margin-left: 15vw;
+        font-family: Inter;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 100%;
+        letter-spacing: 0%;
+      }
+      .filterHeader {
+        position: relative;
+        visibility: visible;
+        margin-top: 5vw;
+        margin-left: 8vw;
+      }
+      .filterHeader h1 {
+        font-family: Inter;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 120%;
+        letter-spacing: 0%;
+        color: white;
+      }
+      .filter {
+        margin: 0;
+        width: 100%;
+        /* margin-left: 60px; */
+        /* align-items: center; */
+        /* margin-top: 130px; */
+      }
+      .mainRight {
+        height: 400px;
+      }
+    
+      
+  }
