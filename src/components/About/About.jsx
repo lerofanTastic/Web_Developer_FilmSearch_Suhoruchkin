@@ -3,6 +3,7 @@ import styles from "./About.module.css";
 import { topAnime } from "../../constants/topAnime.js";
 import { Card } from "../Card/Card.jsx";
 import { useParams } from "react-router-dom";
+import { VideoPlayer } from "../VideoPlayer/VideoPlayer.jsx";
 
 export const About = ({
   title = "No Title :(",
@@ -68,12 +69,7 @@ export const About = ({
         </div>
         <div className={styles.trailer}>
           <h1>Трейлер</h1>
-          <video
-            className={styles.imggWrapper}
-            src={trailer}
-            controls
-            alt="Under"
-          >Ваш браузер не поддерживает воспроизведение видео.</video>
+          <VideoPlayer/>
         </div>
         <div className={styles.gallery}>
           <div className={styles.galleryTop}>
