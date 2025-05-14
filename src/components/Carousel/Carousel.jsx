@@ -4,7 +4,9 @@ import styles from "./Carousel.module.css";
 import { topAnime } from "../../constants/topAnime.js";
 import { Link } from "react-router-dom";
 
+
 export const Carousel = () => {
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {

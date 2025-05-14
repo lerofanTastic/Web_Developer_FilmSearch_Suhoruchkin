@@ -11,7 +11,7 @@ header {
   }
   a {
     text-decoration: none;
-    color: white;
+    color: transparent;
     font-family: Inter;
     font-weight: 600;
     font-size: 1.04vw;
@@ -25,10 +25,25 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
+
     background-color: black;
     width: 100%;
     height: 5.78vw;
     justify-content: space-between;
+  }
+  .headerTop.dark{
+    background-color: black;
+  }
+  .headerTop.light{
+    background-color: white;
+  }
+  .headerTop.dark a, .headerTop.dark p{
+    color: white;
+    /* background-color: black; */
+  }
+  .headerTop.light a, .headerTop.light p{
+    color: black;
+    /* background-color: white; */
   }
   
   .headerLeft img {
@@ -77,12 +92,12 @@ header {
         linear,
         left top,
         right top,
-        color-stop(50%, #efefef),
-        color-stop(50%, #2a2a2a)
+        color-stop(50%, white),
+        color-stop(50%, black)
       )
       no-repeat;
-    background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
-    background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+    background: -o-linear-gradient(left, white 50%, black 50%) no-repeat;
+    background: linear-gradient(to right, white 50%, black 50%) no-repeat;
     background-size: 205%;
     background-position: 0;
     -webkit-transition: 0.4s;
@@ -105,12 +120,12 @@ header {
         linear,
         left top,
         right top,
-        color-stop(50%, #efefef),
-        color-stop(50%, #2a2a2a)
+        color-stop(50%, white),
+        color-stop(50%, black)
       )
       no-repeat;
-    background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
-    background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+    background: -o-linear-gradient(left, white 50%, black 50%) no-repeat;
+    background: linear-gradient(to right, white 50%, black 50%) no-repeat;
     background-size: 205%;
     background-position: 100%;
     border-radius: 50%;

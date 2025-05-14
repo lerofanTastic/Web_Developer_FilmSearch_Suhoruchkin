@@ -1,11 +1,13 @@
 import React from "react";
 import styles from "./Header.module.css";
 import { NavLink } from "react-router-dom";
+import { useTheme } from "../../context/Theme/themeContext";
 
 export const Header = () => {
+  const { theme, toggleTheme } = useTheme();
   return (
     <header>
-      <div className={styles.headerTop}>
+      <div className={`${styles.headerTop} ${styles[theme]}`}>
         <div className={styles.headerLeft}>
           <NavLink
             to="/"
@@ -46,8 +48,12 @@ export const Header = () => {
                 </NavLink>
               </li>
               <li className={styles.listTheme}>
-                <p>Светлая тема</p>
-                <input type="checkbox" className={styles.themeCheckbox} />
+                <p> {theme === "dark" ? "Тёмная тема" : "Светлая тема"}</p>
+                <input
+                  type="checkbox"
+                  onChange={toggleTheme}
+                  className={styles.themeCheckbox}
+                ></input>
               </li>
             </ul>
           </nav>
