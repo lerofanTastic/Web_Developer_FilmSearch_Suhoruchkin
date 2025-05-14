@@ -1,11 +1,12 @@
 .main{
+  position: relative;
 display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
 }
 .btn{
-  margin: 0 100px 0 100px;
+  position: relative;
 }
 .carouselContainer {
   position: relative;
@@ -28,10 +29,10 @@ align-items: center;
   /* position: absolute; */
   /* top: 50%; */
   /* transform: translateY(-50%); */
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  /* color: #fff; */
+  /* border: none; */
+  /* border-radius: 50%; */
   width: 40px;
   height: 40px;
   display: flex;
@@ -42,12 +43,15 @@ align-items: center;
 }
 
 .arrow.left {
-  /* margin-right: 200px; */
-  /* left: 10px; */
+  position: absolute;
+  top: 50%;
+   left: 100px;
 }
 
 .arrow.right {
-  /* right: 10px; */
+  position: absolute;
+  top: 50%;
+   right: 100px;
 }
 
 @media (max-width: 720px) {

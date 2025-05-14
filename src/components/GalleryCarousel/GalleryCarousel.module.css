@@ -1,0 +1,44 @@
+.galleryContainer {
+  position: relative;
+  width: 100%;
+   overflow: visible;
+}
+.arrowLeft {
+  position: absolute;
+  top: 50%;
+  left: -70px; /* Смещаем левую стрелку за пределы контейнера */
+  transform: translateY(-50%);
+  width: 20px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.arrowRight {
+  position: absolute;
+  top: 50%;
+  right: -70px; /* Смещаем правую стрелку за пределы контейнера */
+  transform: translateY(-50%);
+  width: 20px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 10;
+}
+.galleryCarousel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  width: 100%;
+}
+.galleryPic {
+
+  display: flex;
+  gap: 1.04vw;
+  overflow: hidden;
+}
+.galleryImg {
+  width: 32.65vw;
+  height: 24.79vw;
+  object-fit: cover;
+}

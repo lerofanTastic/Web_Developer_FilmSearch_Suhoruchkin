@@ -14,6 +14,13 @@ export const topAnime = [
     date: "2023-01-01",
     age: "16+",
     stars: 7,
+    src: [
+      "/src/assets/img/card1.png",
+      "/src/assets/img/card2.png",
+      "/src/assets/img/card3.png",
+      "/src/assets/img/card1.png",
+      "/src/assets/img/card3.png",
+    ],
   },
   {
     id: 2,
@@ -30,6 +37,11 @@ export const topAnime = [
     date: "2023-01-01",
     age: "16+",
     stars: 7,
+    src: [
+      "/src/assets/img/card1.png",
+      "/src/assets/img/card2.png",
+      "/src/assets/img/card3.png",
+    ],
   },
   {
     id: 3,
@@ -46,6 +58,11 @@ export const topAnime = [
     date: "2023-01-01",
     age: "16+",
     stars: 7,
+    src: [
+      "/src/assets/img/card1.png",
+      "/src/assets/img/card2.png",
+      "/src/assets/img/card3.png",
+    ],
   },
   {
     id: 4,
@@ -62,6 +79,11 @@ export const topAnime = [
     date: "2023-01-01",
     age: "16+",
     stars: 7,
+    src: [
+      "/src/assets/img/card1.png",
+      "/src/assets/img/card2.png",
+      "/src/assets/img/card3.png",
+    ],
   },
   {
     id: 5,
@@ -78,6 +100,11 @@ export const topAnime = [
     date: "2023-01-01",
     age: "16+",
     stars: 7,
+    src: [
+      "/src/assets/img/card1.png",
+      "/src/assets/img/card2.png",
+      "/src/assets/img/card3.png",
+    ],
   },
   {
     id: 6,
@@ -94,6 +121,11 @@ export const topAnime = [
     date: "2023-01-01",
     age: "16+",
     stars: 7,
+    src: [
+      "/src/assets/img/card1.png",
+      "/src/assets/img/card2.png",
+      "/src/assets/img/card3.png",
+    ],
   },
   {
     id: 7,
@@ -110,6 +142,11 @@ export const topAnime = [
     date: "2023-01-01",
     age: "16+",
     stars: 7,
+    src: [
+      "/src/assets/img/card1.png",
+      "/src/assets/img/card2.png",
+      "/src/assets/img/card3.png",
+    ],
   },
   {
     id: 8,
@@ -126,6 +163,11 @@ export const topAnime = [
     date: "2023-01-01",
     age: "16+",
     stars: 7,
+    src: [
+      "/src/assets/img/card1.png",
+      "/src/assets/img/card2.png",
+      "/src/assets/img/card3.png",
+    ],
   },
   {
     id: 9,
@@ -142,5 +184,10 @@ export const topAnime = [
     date: "2023-01-01",
     age: "16+",
     stars: 7,
+    src: [
+      "/src/assets/img/card1.png",
+      "/src/assets/img/card2.png",
+      "/src/assets/img/card3.png",
+    ],
   },
 ];

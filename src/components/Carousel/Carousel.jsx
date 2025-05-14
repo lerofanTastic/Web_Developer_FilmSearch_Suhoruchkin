@@ -21,14 +21,16 @@ export const Carousel = () => {
 
   return (
     <div className={styles.main}>
-      <div className={styles.btn}>
-        <button
-          className={`${styles.arrow} ${styles.left}`}
-          onClick={handlePrev}
-        >
-          &#8249;
-        </button>
-      </div>
+      {currentIndex > 0 && (
+        <div className={styles.btn}>
+          <img
+            className={`${styles.arrow} ${styles.left}`}
+            src="/src/assets/svg/left-arrow.svg"
+            alt="Left Arrow"
+            onClick={handlePrev}
+          />
+        </div>
+      )}
 
       <div className={styles.carouselContainer}>
         <div
@@ -49,14 +51,16 @@ export const Carousel = () => {
           ))}
         </div>
       </div>
-      <div className={styles.btn}>
-        <button
-          className={`${styles.arrow} ${styles.right}`}
-          onClick={handleNext}
-        >
-          &#8250;
-        </button>
-      </div>
+      {currentIndex < topAnime.length - 3 && (
+        <div className={styles.btn}>
+          <img
+            className={`${styles.arrow} ${styles.right}`}
+            src="/src/assets/svg/right-arrow.svg"
+            alt="Right Arrow"
+            onClick={handleNext}
+          />
+        </div>
+      )}
     </div>
   );
 };

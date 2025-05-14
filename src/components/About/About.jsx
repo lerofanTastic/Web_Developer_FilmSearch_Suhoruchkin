@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./About.module.css";
 import { topAnime } from "../../constants/topAnime.js";
 import { Card } from "../Card/Card.jsx";
 import { useParams } from "react-router-dom";
 import { VideoPlayer } from "../VideoPlayer/VideoPlayer.jsx";
+import { GalleryCarousel } from "../GalleryCarousel/GalleryCarousel.jsx";
 
 export const About = ({
   title = "No Title :(",
-  trailer = "No Trailer :(",
+  // trailer = "No Trailer :(",
   genre = "No Genre :(",
   country = "No Country :(",
   actors = "No Actors :(",
@@ -21,6 +22,7 @@ export const About = ({
   if (!aboutAnime) {
     return <div>Элемент с указанным ID не найден</div>;
   }
+
   return (
     <main className={styles.main}>
       <div className={styles.wrapper}>
@@ -69,7 +71,7 @@ export const About = ({
         </div>
         <div className={styles.trailer}>
           <h1>Трейлер</h1>
-          <VideoPlayer/>
+          <VideoPlayer />
         </div>
         <div className={styles.gallery}>
           <div className={styles.galleryTop}>
@@ -77,29 +79,11 @@ export const About = ({
               <h1>Галерея</h1>
             </div>
             <div className={styles.galleryArrows}>
-              <img src="/assets/left-arrow.svg" alt="Left Arrow" />
-              <img src="/assets/right-arrow.svg" alt="Right Arrow" />
+              <img src="/src/assets/svg/left-arrow.svg" alt="Left Arrow" />
+              <img src="/src/assets/svg/right-arrow.svg" alt="Right Arrow" />
             </div>
           </div>
-          <div className={styles.galleryCarousel}>
-            <div className={styles.galleryPic}>
-              <img
-                className={styles.galleryImg}
-                src="/assets/gallery1.png"
-                alt="Gallery 1"
-              />
-              <img
-                className={styles.galleryImg}
-                src="/assets/gallery2.png"
-                alt="Gallery 2"
-              />
-            </div>
-            <img
-              className={styles.arrow}
-              src="/assets/right-arrow.svg"
-              alt="Right Arrow"
-            />
-          </div>
+          <GalleryCarousel src={aboutAnime.src} />
         </div>
         <div className={styles.reviews}>
           <h1>Рецензии зрителей</h1>

@@ -113,21 +113,9 @@
   letter-spacing: 0%;
   color: white;
 }
-.galleryCarousel {
-  align-items: center;
-  gap: 7.34vw;
-  display: flex;
-  flex-direction: row;
-}
-.galleryImg {
-  width: 32.65vw;
-  height: 24.79vw;
-}
-.galleryPic {
-  display: flex;
-  flex-direction: row;
-  gap: 1.04vw;
-}
+
+
+
 .reviews {
   margin-top: 5.52vw;
   /* margin-bottom: 5.52vw; */
@@ -203,6 +191,7 @@
   position: absolute;
   visibility: hidden;
 }
+
 @media (max-width: 720px) {
   .wrapper {
     width: 100%;
