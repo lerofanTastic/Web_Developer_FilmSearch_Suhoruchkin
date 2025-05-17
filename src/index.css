@@ -5,7 +5,7 @@
   /* xd */
 }
 .nav-link-active{
-  color: white;
+  /* color: white; */
   text-decoration: none;
   pointer-events: none; /* запрещает клик */
   cursor: default;

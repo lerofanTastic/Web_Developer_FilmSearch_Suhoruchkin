@@ -1,18 +1,18 @@
-.main{
+.main {
   position: relative;
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-.btn{
+.btn {
   position: relative;
 }
 .carouselContainer {
   position: relative;
-  margin:0 auto;
-  margin-top: 103px;
-  margin-bottom: 103px;
+  margin: 0 auto;
+  margin-top: 5.36vw;
+  margin-bottom: 5.36vw;
   width: 70%;
   justify-content: center;
   align-items: center;
@@ -20,57 +20,55 @@ align-items: center;
 }
 
 .carousel {
-  display: flex;
-  transition: transform 0.5s ease-in-out; /* Анимация при переключении */
-  gap: 100px; /* Расстояние между карточками */
+   display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  gap: 5.2vw; /* Расстояние между карточками */
 }
 
 .arrow {
-  /* position: absolute; */
-  /* top: 50%; */
-  /* transform: translateY(-50%); */
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  /* color: #fff; */
-  /* border: none; */
-  /* border-radius: 50%; */
-  width: 40px;
-  height: 40px;
+  width: 2.08vw;
+  height: 2.08vw;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   z-index: 10;
-  transition:  0.2s;
+  transition: 0.2s;
 }
-
 
 .arrow.left {
   position: absolute;
   top: 50%;
-   left: 100px;
+  left: 5.2vw;
 }
-.arrow.left.dark{
+.arrow.left.dark {
   content: url("/src/assets/svg/left-arrow.svg");
 }
-.arrow.right.dark{
+.arrow.right.dark {
   content: url("/src/assets/svg/right-arrow.svg");
 }
-.arrow.left.light{
+.arrow.left.light {
   content: url("/src/assets/svg/left-arrow-black.svg");
 }
-.arrow.right.light{
+.arrow.right.light {
   content: url("/src/assets/svg/right-arrow-black.svg");
 }
 .arrow.right {
   position: absolute;
   top: 50%;
-   right: 100px;
+  right: 5.2vw;
 }
 .arrow:hover {
   opacity: 0.5;
 }
-@media (max-width: 720px) {
-  .carouselContainer {
-    height: 534px;
-  }
+
+  @media (max-width: 720px) {
+    .main{
+      height: 148.33vw;
+    }
+    .arrow{
+      width: 3.88vw;
+      height: 7.22vw;
+    }
 }

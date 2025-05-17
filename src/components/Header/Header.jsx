@@ -23,10 +23,10 @@ export const Header = () => {
             <input
               type="checkbox"
               id="burgerCheckbox"
-              className={styles.burgerCheckbox}
+              className={`${styles.burgerCheckbox} ${styles[theme]}`}
             />
-            <label for="burgerCheckbox" className={styles.burger}></label>
-            <ul className={styles.menuList}>
+            <label for="burgerCheckbox" className={`${styles.burger} ${styles[theme]}`}></label>
+            <ul className={`${styles.menuList} ${styles[theme]}`}>
               <li className={styles.list}>
                 <NavLink
                   to="/movie"
@@ -34,7 +34,7 @@ export const Header = () => {
                     isActive ? "nav-link-active" : "nav-link"
                   }
                 >
-                  <div className={styles.menuItem}>Фильмы</div>
+                  <div className={`${styles.menuItem} ${styles[theme]}`}>Фильмы</div>
                 </NavLink>
               </li>
               <li className={styles.list}>
@@ -44,7 +44,7 @@ export const Header = () => {
                     isActive ? "nav-link-active" : "nav-link"
                   }
                 >
-                  <div className={styles.menuItem}>Сериалы</div>
+                  <div className={`${styles.menuItem} ${styles[theme]}`}>Сериалы</div>
                 </NavLink>
               </li>
               <li className={styles.listTheme}>
