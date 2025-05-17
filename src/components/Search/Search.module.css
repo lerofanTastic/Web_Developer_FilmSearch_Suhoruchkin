@@ -59,6 +59,13 @@
   font-size: 1.25vw;
   text-align: center;
   cursor: pointer;
+  border: none;      /* убирает рамку */
+  outline: none;     /* убирает контур при фокусе */
+  box-shadow: none; 
+  transition: background 0.1s, color 0.1s;
+}
+.button:hover{
+  background: #504C4C;
 }
 @media (max-width: 720px) {
   .search {

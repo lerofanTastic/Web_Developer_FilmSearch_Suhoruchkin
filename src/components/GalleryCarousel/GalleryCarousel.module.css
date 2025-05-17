@@ -12,6 +12,10 @@
   height: 40px;
   cursor: pointer;
   z-index: 10;
+  transition:  0.2s;
+}
+.arrowLeft:hover {
+  opacity: 0.5;
 }
 
 .arrowRight {
@@ -23,6 +27,10 @@
   height: 40px;
   cursor: pointer;
   z-index: 10;
+  transition:  0.2s;
+}
+.arrowRight:hover {
+  opacity: 0.5;
 }
 .arrowLeft.dark{
   content: url("/src/assets/svg/left-arrow.svg");

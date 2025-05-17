@@ -1,7 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
-<svg fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330 330" xml:space="preserve" transform="rotate(180)">
-<g id="SVGRepo_bgCarrier" stroke-width="0"/>
-<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="SVGRepo_iconCarrier"> <path id="XMLID_92_" d="M111.213,165.004L250.607,25.607c5.858-5.858,5.858-15.355,0-21.213c-5.858-5.858-15.355-5.858-21.213,0.001 l-150,150.004C76.58,157.211,75,161.026,75,165.004c0,3.979,1.581,7.794,4.394,10.607l150,149.996 C232.322,328.536,236.161,330,240,330s7.678-1.464,10.607-4.394c5.858-5.858,5.858-15.355,0-21.213L111.213,165.004z"/> </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1080" height="1080" viewBox="0 0 1080 1080" xml:space="preserve">
+<desc>Created with Fabric.js 5.2.4</desc>
+<defs>
+</defs>
+<g transform="matrix(1 0 0 1 540 540)" id="be2d2602-f71e-456a-afd2-d7882da88988"  >
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; visibility: hidden;" vector-effect="non-scaling-stroke"  x="-540" y="-540" rx="0" ry="0" width="1080" height="1080" />
+</g>
+<g transform="matrix(1 0 0 1 540 540)" id="4fcc3ef1-96f4-45b6-8483-4f76ad9935b3"  >
+</g>
+<g transform="matrix(-42.43 0 0 42.43 540 540)" id="c185_triangle"  >
+<path style="stroke: rgb(0,0,0); stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"  transform=" translate(-12.73, -12.73)" d="M 20.982 0.521 L 20.982 2.5269999999999997 L 8.57 12.315 C 8.449 12.416 8.375 12.565999999999999 8.375 12.725 C 8.375 12.884 8.449 13.036 8.57 13.135 L 20.982 22.924999999999997 L 20.982 24.929999999999996 C 20.982 25.128999999999998 20.867 25.312999999999995 20.685 25.398999999999997 C 20.506999999999998 25.484999999999996 20.29 25.462999999999997 20.136 25.337999999999997 L 4.664 13.136 C 4.542 13.036 4.47 12.885 4.47 12.725999999999999 C 4.47 12.566999999999998 4.542 12.415999999999999 4.664 12.315999999999999 L 20.136 0.113 C 20.29 -0.012999999999999998 20.506999999999998 -0.03499999999999999 20.685 0.052000000000000005 C 20.866 0.139 20.982 0.322 20.982 0.521 z" stroke-linecap="round" />
+</g>
+</svg>

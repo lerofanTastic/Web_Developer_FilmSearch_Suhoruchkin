@@ -40,7 +40,9 @@ align-items: center;
   align-items: center;
   cursor: pointer;
   z-index: 10;
+  transition:  0.2s;
 }
+
 
 .arrow.left {
   position: absolute;
@@ -64,7 +66,9 @@ align-items: center;
   top: 50%;
    right: 100px;
 }
-
+.arrow:hover {
+  opacity: 0.5;
+}
 @media (max-width: 720px) {
   .carouselContainer {
     height: 534px;

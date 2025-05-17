@@ -57,12 +57,34 @@
   letter-spacing: 0%;
   color: #686868;
   padding-left: 1.19vw;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
 }
 .category.dark select{
 background: #1d1d1d;
 }
 .category.light select{
 background: white;
+}
+.selectWrapper {
+  position: relative;
+  display: inline-block;
+}
+.arrow {
+  position: absolute;
+  right: 2em;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.2s;
+  background: url('/src/assets/svg/filter-arrow.svg') center/contain no-repeat;
+}
+.arrowOpen {
+  transform: translateY(-50%) rotate(180deg);
 }
 @media (max-width: 720px) {
   .mainLeft {
