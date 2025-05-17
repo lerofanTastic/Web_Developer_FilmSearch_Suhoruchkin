@@ -47,7 +47,18 @@ align-items: center;
   top: 50%;
    left: 100px;
 }
-
+.arrow.left.dark{
+  content: url("/src/assets/svg/left-arrow.svg");
+}
+.arrow.right.dark{
+  content: url("/src/assets/svg/right-arrow.svg");
+}
+.arrow.left.light{
+  content: url("/src/assets/svg/left-arrow-black.svg");
+}
+.arrow.right.light{
+  content: url("/src/assets/svg/right-arrow-black.svg");
+}
 .arrow.right {
   position: absolute;
   top: 50%;

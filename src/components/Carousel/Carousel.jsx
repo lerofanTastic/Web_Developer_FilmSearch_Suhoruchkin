@@ -3,9 +3,11 @@ import { Card } from "../Card/Card";
 import styles from "./Carousel.module.css";
 import { topAnime } from "../../constants/topAnime.js";
 import { Link } from "react-router-dom";
+import { useTheme } from "../../context/Theme/themeContext";
 
 
 export const Carousel = () => {
+    const { theme } = useTheme();
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -26,8 +28,8 @@ export const Carousel = () => {
       {currentIndex > 0 && (
         <div className={styles.btn}>
           <img
-            className={`${styles.arrow} ${styles.left}`}
-            src="/src/assets/svg/left-arrow.svg"
+            className={`${styles.arrow} ${styles.left} ${styles[theme]}`}
+            // src="/src/assets/svg/left-arrow.svg"
             alt="Left Arrow"
             onClick={handlePrev}
           />
@@ -56,8 +58,8 @@ export const Carousel = () => {
       {currentIndex < topAnime.length - 3 && (
         <div className={styles.btn}>
           <img
-            className={`${styles.arrow} ${styles.right}`}
-            src="/src/assets/svg/right-arrow.svg"
+            className={`${styles.arrow} ${styles.right} ${styles[theme]}`}
+            // src="/src/assets/svg/right-arrow.svg"
             alt="Right Arrow"
             onClick={handleNext}
           />

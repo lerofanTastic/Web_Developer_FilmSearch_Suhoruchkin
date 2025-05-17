@@ -48,7 +48,7 @@ export const Header = () => {
                 </NavLink>
               </li>
               <li className={styles.listTheme}>
-                <p> {theme === "dark" ? "Тёмная тема" : "Светлая тема"}</p>
+                <p> {theme === "dark" ? "Светлая тема" : "Тёмная тема"}</p>
                 <input
                   type="checkbox"
                   onChange={toggleTheme}

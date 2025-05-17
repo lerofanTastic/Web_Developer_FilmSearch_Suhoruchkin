@@ -24,6 +24,18 @@
   cursor: pointer;
   z-index: 10;
 }
+.arrowLeft.dark{
+  content: url("/src/assets/svg/left-arrow.svg");
+}
+.arrowRight.dark{
+  content: url("/src/assets/svg/right-arrow.svg");
+}
+.arrowLeft.light{
+  content: url("/src/assets/svg/left-arrow-black.svg");
+}
+.arrowRight.light{
+  content: url("/src/assets/svg/right-arrow-black.svg");
+}
 .galleryCarousel {
   display: flex;
   align-items: center;

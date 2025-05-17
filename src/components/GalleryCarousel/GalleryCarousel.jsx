@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./GalleryCarousel.module.css";
+import { useTheme } from "../../context/Theme/themeContext";
 
 export const GalleryCarousel = ({ src }) => {
+  const { theme } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0); // Индекс текущего изображения
 
   useEffect(() => {
@@ -23,8 +25,8 @@ export const GalleryCarousel = ({ src }) => {
     <div className={styles.galleryContainer}>
       {currentIndex > 0 && (
         <img
-          className={styles.arrowLeft}
-          src="/src/assets/svg/left-arrow.svg"
+          className={`${styles.arrowLeft} ${styles[theme]}`}
+          // src="/src/assets/svg/left-arrow.svg"
           alt="Left Arrow"
           onClick={handlePrev}
         />
@@ -49,8 +51,8 @@ export const GalleryCarousel = ({ src }) => {
       </div>
       {currentIndex + 2 < src.length && (
         <img
-          className={styles.arrowRight}
-          src="/src/assets/svg/right-arrow.svg"
+          className={`${styles.arrowRight} ${styles[theme]}`}
+          // src="/src/assets/svg/right-arrow.svg"
           alt="Right Arrow"
           onClick={handleNext}
         />

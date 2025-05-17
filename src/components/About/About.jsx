@@ -5,6 +5,8 @@ import { Card } from "../Card/Card.jsx";
 import { useParams } from "react-router-dom";
 import { VideoPlayer } from "../VideoPlayer/VideoPlayer.jsx";
 import { GalleryCarousel } from "../GalleryCarousel/GalleryCarousel.jsx";
+import { useTheme } from "../../context/Theme/themeContext";
+import { Reviews } from "../Reviews/Reviews.jsx";
 
 export const About = ({
   title = "No Title :(",
@@ -16,6 +18,7 @@ export const About = ({
   date = "No Date :(",
   age = "No Age :(",
 }) => {
+  const { theme } = useTheme();
   const { id } = useParams(); // Получаем id из параметров маршрута
   const aboutAnime = topAnime.find((anime) => anime.id === parseInt(id)); // Ищем элемент по id
 
@@ -24,7 +27,7 @@ export const About = ({
   }
 
   return (
-    <main className={styles.main}>
+    <main className={`${styles.main} ${styles[theme]}`}>
       <div className={styles.wrapper}>
         <div className={styles.bigCard}>
           <div className={styles.mainHeaderMob}>
@@ -38,42 +41,54 @@ export const About = ({
             />
           </div>
 
-          <div className={styles.description}>
+          <div className={`${styles.description} ${styles[theme]}`}>
             <h1>{title}</h1>
             <h2>О фильме</h2>
             <div className={styles.information}>
               <div className={styles.informationType}>
                 <div className={styles.typeFirst}>Жанр</div>
-                <div className={styles.typeSecond}>{genre}</div>
+                <div className={`${styles.typeSecond} ${styles[theme]}`}>
+                  {genre}
+                </div>
               </div>
               <div className={styles.informationType}>
                 <div className={styles.typeFirst}>Страна производства</div>
-                <div className={styles.typeSecond}>{country}</div>
+                <div className={`${styles.typeSecond} ${styles[theme]}`}>
+                  {country}
+                </div>
               </div>
               <div className={styles.informationType}>
                 <div className={styles.typeFirst}>Актёры</div>
-                <div className={styles.typeSecond}>{actors}</div>
+                <div className={`${styles.typeSecond} ${styles[theme]}`}>
+                  {actors}
+                </div>
               </div>
               <div className={styles.informationType}>
                 <div className={styles.typeFirst}>Режиссёры</div>
-                <div className={styles.typeSecond}>{writers}</div>
+                <div className={`${styles.typeSecond} ${styles[theme]}`}>
+                  {writers}
+                </div>
               </div>
               <div className={styles.informationType}>
                 <div className={styles.typeFirst}>Дата релиза</div>
-                <div className={styles.typeSecond}>{date}</div>
+                <div className={`${styles.typeSecond} ${styles[theme]}`}>
+                  {date}
+                </div>
               </div>
               <div className={styles.informationType}>
                 <div className={styles.typeFirst}>Возрастное ограничение</div>
-                <div className={styles.typeSecond}>{age}</div>
+                <div className={`${styles.typeSecond} ${styles[theme]}`}>
+                  {age}
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className={styles.trailer}>
+        <div className={`${styles.trailer} ${styles[theme]}`}>
           <h1>Трейлер</h1>
           <VideoPlayer />
         </div>
-        <div className={styles.gallery}>
+        <div className={`${styles.gallery} ${styles[theme]}`}>
           <div className={styles.galleryTop}>
             <div className={styles.galleryHeader}>
               <h1>Галерея</h1>
@@ -85,85 +100,7 @@ export const About = ({
           </div>
           <GalleryCarousel src={aboutAnime.src} />
         </div>
-        <div className={styles.reviews}>
-          <h1>Рецензии зрителей</h1>
-          <div className={styles.reviewsContainer}>
-            <div className={styles.reviewBox}>
-              <h2>Ирина Глебова</h2>
-              <div className={styles.whiteStarContainer}>
-                {Array.from({ length: 10 }).map((_, index) => (
-                  <img
-                    key={index}
-                    className={styles.starWrapper}
-                    src={
-                      index < aboutAnime.stars
-                        ? "/src/assets/svg/star-white.svg" // Заполненная звезда
-                        : "/src/assets/svg/star-white-trans.svg" // Прозрачная звезда
-                    }
-                    alt="Star"
-                  />
-                ))}
-              </div>
-              <div className={styles.blackStarContainer}>
-                {Array.from({ length: 10 }).map((_, index) => (
-                  <img
-                    key={index}
-                    className={styles.starWrapper}
-                    src={
-                      index < aboutAnime.stars
-                        ? "/src/assets/svg/star-black.svg" // Заполненная звезда
-                        : "/src/assets/svg/star-black-trans.svg" // Прозрачная звезда
-                    }
-                    alt="Star"
-                  />
-                ))}
-              </div>
-              <p>
-                Проклятое королевство — это фильм, который захватил мое сердце и
-                не отпустит. Этот фильм, с его захватывающим сюжетом и отличными
-                актерами, оставил у меня невероятное впечатление. Каждый кадр
-                этого фильма наполнен эмоциями и драматизмом, что делает его
-                идеальным для тех, кто любит кино искусство...
-              </p>
-            </div>
-            <div className={styles.reviewBox}>
-              <h2>Мария Семёнова</h2>
-              <div className={styles.whiteStarContainer}>
-                {Array.from({ length: 10 }).map((_, index) => (
-                  <img
-                    key={index}
-                    className={styles.starWrapper}
-                    src={
-                      index < aboutAnime.stars
-                        ? "/src/assets/svg/star-white.svg" // Заполненная звезда
-                        : "/src/assets/svg/star-white-trans.svg" // Прозрачная звезда
-                    }
-                    alt="Star"
-                  />
-                ))}
-              </div>
-              <div className={styles.blackStarContainer}>
-                {Array.from({ length: 10 }).map((_, index) => (
-                  <img
-                    key={index}
-                    className={styles.starWrapper}
-                    src={
-                      index < aboutAnime.stars
-                        ? "/src/assets/svg/star-black.svg" // Заполненная звезда
-                        : "/src/assets/svg/star-black-trans.svg" // Прозрачная звезда
-                    }
-                    alt="Star"
-                  />
-                ))}
-              </div>
-              <p>
-                Честно говоря, фильм оставил смешанные впечатления. Нудное
-                начало. Актёры, правда, играют великолепно, но даже они не
-                спасли ситуацию.
-              </p>
-            </div>
-          </div>
-        </div>
+        <Reviews />
       </div>
     </main>
   );

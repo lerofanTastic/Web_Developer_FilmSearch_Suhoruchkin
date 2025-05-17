@@ -2,15 +2,17 @@ import { Card } from "../Card/Card";
 import styles from "./MovieList.module.css";
 import { Link } from "react-router-dom";
 import { topAnime } from "../../constants/topAnime.js";
+import { useTheme } from "../../context/Theme/themeContext";
 
 export const MovieList = () => {
+  const { theme } = useTheme();
   return (
-    <div className={styles.mainRight}>
+    <div className={`${styles.mainRight} ${styles[theme]}`}>
       <div className={styles.mainRightTop}>
-        <div className={styles.mainRightTopHeader}>
+        <div className={`${styles.mainRightTopHeader} ${styles[theme]}`}>
           <h1>Фильмы</h1>
         </div>
-        <div className={styles.mainRightTopPages}>
+        <div className={`${styles.mainRightTopPages} ${styles[theme]}`}>
           <p>1</p>
           <p>2</p>
           <p>3</p>
