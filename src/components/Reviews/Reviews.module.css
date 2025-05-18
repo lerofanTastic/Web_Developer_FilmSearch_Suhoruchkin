@@ -1,8 +1,10 @@
 .reviews {
+  width: 66.66vw;
   margin-top: 5.52vw;
   /* margin-bottom: 5.52vw; */
   display: flex;
   flex-direction: column;
+  margin-bottom: 7.76vw;
 }
 .reviews h1 {
   margin-bottom: 3.9vw;
@@ -29,7 +31,7 @@
   
   width: 32.65vw;
   height: 24.79vw;
-  margin-bottom: 7.76vw;
+  
 }
 .reviewBox.dark{
 background-color: black;

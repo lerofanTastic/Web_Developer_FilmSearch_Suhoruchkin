@@ -27,81 +27,75 @@ export const About = ({
   }
 
   return (
-    <main className={`${styles.main} ${styles[theme]}`}>
-      <div className={styles.wrapper}>
-        <div className={styles.bigCard}>
-          <div className={styles.mainHeaderMob}>
-            <h1>{title}</h1>
-          </div>
-          <div className={styles.poster}>
-            <Card
-              title=""
-              image={aboutAnime.image}
-              rating={aboutAnime.rating}
-            />
-          </div>
+    <div className={`${styles.main} ${styles[theme]}`}>
+      <div className={styles.bigCard}>
+        <div className={styles.mainHeaderMob}>
+          <h1>{title}</h1>
+        </div>
+        <div className={styles.poster}>
+          <Card title="" image={aboutAnime.image} rating={aboutAnime.rating} />
+        </div>
 
-          <div className={`${styles.description} ${styles[theme]}`}>
-            <h1>{title}</h1>
-            <h2>О фильме</h2>
-            <div className={styles.information}>
-              <div className={styles.informationType}>
-                <div className={styles.typeFirst}>Жанр</div>
-                <div className={`${styles.typeSecond} ${styles[theme]}`}>
-                  {genre}
-                </div>
+        <div className={`${styles.description} ${styles[theme]}`}>
+          <h1>{title}</h1>
+          <h2>О фильме</h2>
+          <div className={styles.information}>
+            <div className={styles.informationType}>
+              <div className={styles.typeFirst}>Жанр</div>
+              <div className={`${styles.typeSecond} ${styles[theme]}`}>
+                {genre}
               </div>
-              <div className={styles.informationType}>
-                <div className={styles.typeFirst}>Страна производства</div>
-                <div className={`${styles.typeSecond} ${styles[theme]}`}>
-                  {country}
-                </div>
+            </div>
+            <div className={styles.informationType}>
+              <div className={styles.typeFirst}>Страна производства</div>
+              <div className={`${styles.typeSecond} ${styles[theme]}`}>
+                {country}
               </div>
-              <div className={styles.informationType}>
-                <div className={styles.typeFirst}>Актёры</div>
-                <div className={`${styles.typeSecond} ${styles[theme]}`}>
-                  {actors}
-                </div>
+            </div>
+            <div className={styles.informationType}>
+              <div className={styles.typeFirst}>Актёры</div>
+              <div className={`${styles.typeSecond} ${styles[theme]}`}>
+                {actors}
               </div>
-              <div className={styles.informationType}>
-                <div className={styles.typeFirst}>Режиссёры</div>
-                <div className={`${styles.typeSecond} ${styles[theme]}`}>
-                  {writers}
-                </div>
+            </div>
+            <div className={styles.informationType}>
+              <div className={styles.typeFirst}>Режиссёры</div>
+              <div className={`${styles.typeSecond} ${styles[theme]}`}>
+                {writers}
               </div>
-              <div className={styles.informationType}>
-                <div className={styles.typeFirst}>Дата релиза</div>
-                <div className={`${styles.typeSecond} ${styles[theme]}`}>
-                  {date}
-                </div>
+            </div>
+            <div className={styles.informationType}>
+              <div className={styles.typeFirst}>Дата релиза</div>
+              <div className={`${styles.typeSecond} ${styles[theme]}`}>
+                {date}
               </div>
-              <div className={styles.informationType}>
-                <div className={styles.typeFirst}>Возрастное ограничение</div>
-                <div className={`${styles.typeSecond} ${styles[theme]}`}>
-                  {age}
-                </div>
+            </div>
+            <div className={styles.informationType}>
+              <div className={styles.typeFirst}>Возрастное ограничение</div>
+              <div className={`${styles.typeSecond} ${styles[theme]}`}>
+                {age}
               </div>
             </div>
           </div>
         </div>
-        <div className={`${styles.trailer} ${styles[theme]}`}>
-          <h1>Трейлер</h1>
-          <VideoPlayer />
-        </div>
-        <div className={`${styles.gallery} ${styles[theme]}`}>
-          <div className={styles.galleryTop}>
-            <div className={styles.galleryHeader}>
-              <h1>Галерея</h1>
-            </div>
-            <div className={styles.galleryArrows}>
-              <img src="/src/assets/svg/left-arrow.svg" alt="Left Arrow" />
-              <img src="/src/assets/svg/right-arrow.svg" alt="Right Arrow" />
-            </div>
-          </div>
-          <GalleryCarousel src={aboutAnime.src} />
-        </div>
-        <Reviews />
       </div>
-    </main>
+      <div className={`${styles.trailer} ${styles[theme]}`}>
+        <h1>Трейлер</h1>
+        <VideoPlayer />
+      </div>
+      <div className={`${styles.gallery} ${styles[theme]}`}>
+        <div className={styles.galleryTop}>
+          <div className={styles.galleryHeader}>
+            <h1>Галерея</h1>
+          </div>
+          <div className={styles.galleryArrows}>
+            <img src="/src/assets/svg/left-arrow.svg" alt="Left Arrow" />
+            <img src="/src/assets/svg/right-arrow.svg" alt="Right Arrow" />
+          </div>
+        </div>
+        <GalleryCarousel src={aboutAnime.src} />
+      </div>
+      <Reviews />
+    </div>
   );
 };

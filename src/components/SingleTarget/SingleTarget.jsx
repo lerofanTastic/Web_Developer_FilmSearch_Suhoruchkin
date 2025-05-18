@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { topAnime } from "../../constants/topAnime";
 import { About } from "../About/About";
 import { Search } from "../Search/Search";
+import styles from "./SingleTarget.module.css"
 
 export const SingleTarget = () => {
   const { id } = useParams(); // Получаем id из параметров маршрута
@@ -11,7 +12,7 @@ export const SingleTarget = () => {
     return <div>Элемент с указанным ID не найден</div>;
   }
   return (
-    <div>
+    <div className={styles.single}>
       <Search />
       <About
         title={aboutAnime.title}

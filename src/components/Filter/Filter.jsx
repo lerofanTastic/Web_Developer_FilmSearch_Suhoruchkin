@@ -19,7 +19,7 @@ export const Filter = () => {
 
   return (
     <div className={`${styles.mainLeft} ${styles[theme]}`}>
-      <div className={styles.filterHeader}>
+      <div className={`${styles.filterHeader} ${styles[theme]}`}>
         <h1>Фильтр</h1>
       </div>
       <div className={styles.filter}>

@@ -60,21 +60,65 @@
   margin-bottom: 7.65vw;
 }
 @media (max-width: 720px) {
+  .mainRightTopHeader{
+    visibility: hidden;
+    position: absolute;
+  }
+  .mainRightTopPages{
+    visibility: hidden;
+    position: absolute;
+  }
   .mainCards {
-    height: 300px;
-    flex-wrap: nowrap;
-    gap: 0px;
-    margin: 0;
-    margin-bottom: 10vw;
+    display: flex;
+    /* flex-wrap: nowrap; */
+    /* overflow: hidden; */
+    width: 73.05vw;
+    height: 101.94vw;
     justify-content: center;
     align-items: center;
+    gap: 0;
+    margin: 0 auto;
+    margin-bottom: 28.88vw;
+    position: relative;
+    /* Для плавного смещения карточек */
+    /* transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); */
+    /* will-change: transform; */
   }
-  .mainRightTopHeader {
-    position: absolute;
-    visibility: hidden;
+
+  .arrow {
+    width: 3.88vw;
+    height: 7.22vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.2s;
   }
-  .mainRightTopPages {
+
+  .arrow.left {
     position: absolute;
-    visibility: hidden;
+    top: 50%;
+    right: 77vw;
+  }
+  .arrow.left.dark {
+    content: url("/src/assets/svg/left-arrow.svg");
+  }
+  .arrow.right.dark {
+    content: url("/src/assets/svg/right-arrow.svg");
+  }
+  .arrow.left.light {
+    content: url("/src/assets/svg/left-arrow-black.svg");
+  }
+  .arrow.right.light {
+    content: url("/src/assets/svg/right-arrow-black.svg");
+  }
+  .arrow.right {
+    position: absolute;
+    top: 50%;
+    left: 77vw;
+  }
+  .arrow:hover {
+    opacity: 0.5;
   }
 }

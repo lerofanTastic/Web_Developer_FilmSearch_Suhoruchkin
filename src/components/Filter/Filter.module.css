@@ -62,11 +62,11 @@
   -moz-appearance: none;
   background: none;
 }
-.category.dark select{
-background: #1d1d1d;
+.category.dark select {
+  background: #1d1d1d;
 }
-.category.light select{
-background: white;
+.category.light select {
+  background: white;
 }
 .selectWrapper {
   position: relative;
@@ -81,7 +81,7 @@ background: white;
   pointer-events: none;
   transform: translateY(-50%) rotate(0deg);
   transition: transform 0.2s;
-  background: url('/src/assets/svg/filter-arrow.svg') center/contain no-repeat;
+  background: url("/src/assets/svg/filter-arrow.svg") center/contain no-repeat;
 }
 .arrowOpen {
   transform: translateY(-50%) rotate(180deg);
@@ -90,49 +90,59 @@ background: white;
   .mainLeft {
     /* width: 720px; */
     width: 100%;
-    height: 550px;
+    height: 271.94vw;
     /* align-items: center; */
     background-color: #1d1d1d;
   }
   .category {
-    width: 100%;
-    height: 70px;
+    width: 83.33vw;
+    height: 36.66vw;
     align-items: center;
+    margin-bottom: 13.88vw;
   }
   .category select {
     background: black;
-
-    width: 80vw;
-    height: 132px;
+    padding-left: 10vw;
+    width: 83.33vw;
+    height: 18.88vw;
     font-family: Inter;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 5.55vw;
     line-height: 100%;
     letter-spacing: 0%;
-    border-radius: 10px;
+    border-radius: 2.77vw;
+    margin-left: 8.05vw;
   }
   .category label {
     align-self: normal;
-    margin-left: 15vw;
+    margin-left: 14.44vw;
     font-family: Inter;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 6.66vw;
     line-height: 100%;
     letter-spacing: 0%;
+    margin-bottom: 9.72vw;
   }
   .filterHeader {
     position: relative;
     visibility: visible;
-    margin-top: 5vw;
-    margin-left: 8vw;
+    margin-top: 10vw;
+    margin-left: 8.05vw;
+    margin-bottom: 14.16vw;
   }
   .filterHeader h1 {
     font-family: Inter;
     font-weight: 600;
-    font-size: 36px;
+    font-size: 10vw;
     line-height: 120%;
     letter-spacing: 0%;
     color: white;
+  }
+  .filterHeader.dark h1 {
+    color: white;
+  }
+  .filterHeader.light h1 {
+    color: black;
   }
   .filter {
     margin: 0;
@@ -141,7 +151,10 @@ background: white;
     /* align-items: center; */
     /* margin-top: 130px; */
   }
-  .mainRight {
-    height: 400px;
+  .mainLeft.dark {
+    background-color: #1d1d1d;
+  }
+  .category.dark select {
+    background: black;
   }
 }

@@ -1,9 +1,10 @@
 .main {
-  height: 175.05vw;
-  height: 100%;
-  width: 100%;
 
-  /* margin-bottom: 10vw; */
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .main.dark {
   background-color: #1d1d1d;
@@ -11,25 +12,21 @@
 .main.light {
   background-color: white;
 }
-.wrapper {
-  margin: 0 auto;
-  width: 70%;
-}
+
 .poster {
-  margin-top: 139px;
+  margin-top: 7.23vw;
+  margin-right: 6.61vw;
 }
 .bigCard {
   display: flex;
   flex-direction: row;
-  gap: 6.61vw;
 }
 .card {
-  margin-top: 7.29vw;
   width: 18.64vw;
   height: 26.04vw;
 }
 .description {
-  margin-top: 7.29vw;
+  margin-top: 7.23vw;
   display: flex;
   flex-direction: column;
 }
@@ -115,20 +112,6 @@
 .trailer.light h1{
   color: black;
 }
-.playButton {
-  position: absolute;
-  margin-left: 33.33vw;
-  margin-top: 23.95vw;
-
-  width: 5.2vw;
-  height: 5.2vw;
-}
-.videoContainer {
-  /* width: 100%; */
-  width: 66.66vw;
-  height: 37.5vw;
-  object-fit: cover;
-}
 .gallery {
   margin-top: 5.1vw;
 }
@@ -154,11 +137,15 @@
   visibility: hidden;
 }
 .galleryArrows img {
-  width: 9px;
   position: absolute;
   visibility: hidden;
 }
-
+* {
+  outline: 5px solid #00f !important;
+  margin: 0;
+  gap:0;
+  padding: 0;
+}
 @media (max-width: 720px) {
   .wrapper {
     width: 100%;

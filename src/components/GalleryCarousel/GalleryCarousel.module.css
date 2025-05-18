@@ -1,15 +1,15 @@
 .galleryContainer {
   position: relative;
-  width: 100%;
+  width: 66.66vw;
    overflow: visible;
 }
 .arrowLeft {
   position: absolute;
   top: 50%;
-  left: -70px; /* Смещаем левую стрелку за пределы контейнера */
+  left: -3.64vw; 
   transform: translateY(-50%);
-  width: 20px;
-  height: 40px;
+  width: 1.04vw;
+  height: 2.08vw;
   cursor: pointer;
   z-index: 10;
   transition:  0.2s;
@@ -21,10 +21,10 @@
 .arrowRight {
   position: absolute;
   top: 50%;
-  right: -70px; /* Смещаем правую стрелку за пределы контейнера */
+  right: -3.64vw; 
   transform: translateY(-50%);
-  width: 20px;
-  height: 40px;
+  width: 1.04vw;
+  height: 2.08vw;
   cursor: pointer;
   z-index: 10;
   transition:  0.2s;
