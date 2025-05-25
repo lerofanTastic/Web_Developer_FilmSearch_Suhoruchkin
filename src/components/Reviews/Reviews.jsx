@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Reviews.module.css";
 import { useTheme } from "../../context/Theme/themeContext";
 import { topAnime } from "../../constants/topAnime.js";
@@ -9,11 +9,18 @@ export const Reviews = () => {
   const { id } = useParams();
   const aboutAnime = topAnime.find((anime) => anime.id === parseInt(id));
 
+  // Определяем мобильную версию
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 720);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 720);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   if (!aboutAnime) {
     return <div>Элемент с указанным ID не найден</div>;
   }
 
-  // Проверяем, есть ли отзывы
   const reviewNames = aboutAnime.reviewName || [];
   const reviewStars = aboutAnime.stars || [];
   const reviewTexts = aboutAnime.reviewText || [];
@@ -25,7 +32,7 @@ export const Reviews = () => {
         {reviewNames.map((name, idx) => (
           <div className={`${styles.reviewBox} ${styles[theme]}`} key={idx}>
             <h2>{name}</h2>
-            {theme === "dark" ? (
+            {(theme === "dark" && !isMobile) ? (
               <div className={styles.whiteStarContainer}>
                 {Array.from({ length: 10 }).map((_, index) => (
                   <img

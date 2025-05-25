@@ -29,13 +29,12 @@ export const About = ({
   return (
     <div className={`${styles.main} ${styles[theme]}`}>
       <div className={styles.bigCard}>
-        <div className={styles.mainHeaderMob}>
+        <div className={`${styles.mainHeaderMob} ${styles[theme]}`}>
           <h1>{title}</h1>
         </div>
         <div className={styles.poster}>
           <Card title="" image={aboutAnime.image} rating={aboutAnime.rating} />
         </div>
-
         <div className={`${styles.description} ${styles[theme]}`}>
           <h1>{title}</h1>
           <h2>О фильме</h2>
@@ -80,7 +79,9 @@ export const About = ({
         </div>
       </div>
       <div className={`${styles.trailer} ${styles[theme]}`}>
-        <h1>Трейлер</h1>
+        <div className={styles.trailerHeader}>
+          <h1>Трейлер</h1>
+        </div>
         <VideoPlayer />
       </div>
       <div className={`${styles.gallery} ${styles[theme]}`}>
@@ -89,8 +90,8 @@ export const About = ({
             <h1>Галерея</h1>
           </div>
           <div className={styles.galleryArrows}>
-            <img src="/src/assets/svg/left-arrow.svg" alt="Left Arrow" />
-            <img src="/src/assets/svg/right-arrow.svg" alt="Right Arrow" />
+            <img className={`${styles.galleryArrowLeft} ${styles[theme]}`} alt="Left Arrow" />
+            <img className={`${styles.galleryArrowRight} ${styles[theme]}`} alt="Right Arrow" />
           </div>
         </div>
         <GalleryCarousel src={aboutAnime.src} />

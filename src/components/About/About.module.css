@@ -1,5 +1,4 @@
 .main {
-
   width: 100%;
   margin: 0;
   display: flex;
@@ -106,10 +105,10 @@
 
   margin-bottom: 3.59vw;
 }
-.trailer.dark h1{
+.trailer.dark h1 {
   color: white;
 }
-.trailer.light h1{
+.trailer.light h1 {
   color: black;
 }
 .gallery {
@@ -122,69 +121,73 @@
   font-size: 1.875vw;
   line-height: 135%;
   letter-spacing: 0%;
-
 }
-.gallery.dark h1{
+.gallery.dark h1 {
   color: white;
 }
-.gallery.light h1{
+.gallery.light h1 {
   color: black;
 }
-
 
 .mainHeaderMob {
   position: absolute;
   visibility: hidden;
 }
+.mainHeaderMob.dark {
+  color: white;
+}
+
+.mainHeaderMob.light {
+  color: black;
+}
 .galleryArrows img {
+  top: 0;
+  right: 0;
   position: absolute;
   visibility: hidden;
 }
-* {
-  outline: 5px solid #00f !important;
-  margin: 0;
-  gap:0;
-  padding: 0;
-}
-@media (max-width: 720px) {
-  .wrapper {
-    width: 100%;
 
-    /* margin: 0; */
+@media (max-width: 720px) {
+  .main {
+    align-items: normal;
   }
   .bigCard {
     flex-direction: column;
     gap: 0px;
   }
-  .card {
+  .poster {
     flex: none !important;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    margin-left: 8.05vw;
+    margin-bottom: 10vw;
     position: relative !important ;
-    width: 263.197509765625px;
-    height: 367.5942687988281px;
+    width: 73.05vw;
+    height: 101.94vw;
   }
   .mainHeaderMob {
     position: relative;
     visibility: visible;
     font-family: Inter;
     font-weight: 600;
-    font-size: 36px;
+    font-size: 10vw;
     line-height: 120%;
     letter-spacing: 0%;
     color: white;
-    margin-left: 30px;
+    margin-left: 8.33vw;
+    margin-top: 10vw;
     /* margin-bottom: 100px; */
   }
   .description {
-    margin-left: 30px;
+    margin-left: 8.33vw;
     /* margin-right: 30px; */
     /* margin: 0 auto; */
     /* align-items: center; */
   }
   .description h2 {
+    margin-bottom: 12.5vw;
     font-family: Inter;
     font-weight: 600;
-    font-size: 28px;
+    font-size: 7.77vw;
     line-height: 120%;
     letter-spacing: 0%;
   }
@@ -194,11 +197,12 @@
   }
   .informationType {
     flex-direction: column;
+    margin-bottom: 5.55vw;
   }
   .typeFirst {
     font-family: Inter;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 5vw;
     line-height: 135%;
     letter-spacing: 0%;
     width: 90vw;
@@ -206,38 +210,40 @@
   .typeSecond {
     font-family: Inter;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 5.55vw;
     line-height: 135%;
     letter-spacing: 0%;
     width: 90vw;
   }
-  .playButton {
-    margin-left: 48vw;
-    margin-top: 29vw;
+  .trailerHeader {
+    margin: 0;
+    margin-top: 21.38vw;
+    margin-bottom: 10vw;
+    margin-left: 8.05vw;
   }
-  .imggWrapper {
-    margin: 0 auto;
-    width: 90vw;
-    height: 40vw;
-  }
-  .trailer h1 {
-    margin-left: 29px;
+  .trailerHeader h1 {
+    margin: 0;
     font-family: Inter;
     font-weight: 600;
-    font-size: 28px;
+    font-size: 7.77vw;
     line-height: 120%;
     letter-spacing: 0%;
+  }
+  .gallery {
+    margin-bottom: 21.38vw;
   }
   .galleryHeader h1 {
-    margin-left: 29px;
+    margin-left: 8.05vw;
+    margin-right: 27.77vw;
     font-family: Inter;
     font-weight: 600;
-    font-size: 28px;
+    font-size: 7.77vw;
     line-height: 120%;
     letter-spacing: 0%;
+    margin-bottom: 10vw;
   }
   .galleryTop {
-    gap: 55vw;
+    /* gap: 50vw; */
     align-items: center;
     /* justify-content: space-between;
     margin-right: 61px;
@@ -245,15 +251,32 @@
     display: flex;
     flex-direction: row;
   }
+  .galleryArrows {
+    /* justify-content: center; */
+    align-items: center;
+    display: flex;
+  }
+  .galleryArrowLeft.dark {
+    content: url("/src/assets/svg/left-arrow.svg");
+  }
+  .galleryArrowRight.dark {
+    content: url("/src/assets/svg/right-arrow.svg");
+  }
+  .galleryArrowLeft.light {
+    content: url("/src/assets/svg/left-arrow-black.svg");
+  }
+  .galleryArrowRight.light {
+    content: url("/src/assets/svg/right-arrow-black.svg");
+  }
   .galleryArrows img {
-    /* margin-right: 30px; */
-    width: 9px;
-    height: 16px;
+    margin-right: 10.55vw;
+    width: 2.5vw;
+    height: 4.44vw;
     position: relative;
     visibility: visible;
   }
   .galleryPic {
-    margin-left: 29px;
+    margin-left: 8.05vw;
     overflow-x: hidden;
   }
   .galleryImg {
@@ -262,39 +285,39 @@
   }
 
   .reviews h1 {
-    margin-left: 29px;
+    margin-left: 8.05vw;
     font-family: Inter;
     font-weight: 600;
-    font-size: 28px;
+    font-size: 7.77vw;
     line-height: 120%;
     letter-spacing: 0%;
   }
   .reviewsContainer {
-    gap: 36px;
+    gap: 10vw;
     flex-direction: column;
-    margin-bottom: 93px;
+    margin-bottom: 25.83vw;
   }
   .reviewBox {
     background-color: white;
     margin: 0;
-    margin-left: 29px;
+    margin-left: 8.05vw;
     width: 90vw;
     height: 100%;
   }
   .reviewBox h2 {
-    margin-left: 24px;
+    margin-left: 6.66vw;
     font-family: Inter;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 6.11vw;
     line-height: 135%;
     letter-spacing: 0%;
     color: black;
   }
   .reviewBox p {
-    margin-left: 24px;
+    margin-left: 6.66vw;
     font-family: Inter;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 5vw;
     line-height: 135%;
     letter-spacing: 0%;
     color: black;
@@ -308,11 +331,11 @@
     visibility: visible;
     display: flex;
     flex-direction: row;
-    margin-left: 24px;
+    margin-left: 6.66vw;
   }
   .starWrapper {
-    width: 24px;
-    height: 24px;
+    width: 6.66vw;
+    height: 6.66vw;
   }
   .arrow {
     visibility: hidden;

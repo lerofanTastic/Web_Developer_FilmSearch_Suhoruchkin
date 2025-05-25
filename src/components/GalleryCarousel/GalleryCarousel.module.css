@@ -1,18 +1,18 @@
 .galleryContainer {
   position: relative;
   width: 66.66vw;
-   overflow: visible;
+  overflow: visible;
 }
 .arrowLeft {
   position: absolute;
   top: 50%;
-  left: -3.64vw; 
+  left: -3.64vw;
   transform: translateY(-50%);
   width: 1.04vw;
   height: 2.08vw;
   cursor: pointer;
   z-index: 10;
-  transition:  0.2s;
+  transition: 0.2s;
 }
 .arrowLeft:hover {
   opacity: 0.5;
@@ -21,27 +21,27 @@
 .arrowRight {
   position: absolute;
   top: 50%;
-  right: -3.64vw; 
+  right: -3.64vw;
   transform: translateY(-50%);
   width: 1.04vw;
   height: 2.08vw;
   cursor: pointer;
   z-index: 10;
-  transition:  0.2s;
+  transition: 0.2s;
 }
 .arrowRight:hover {
   opacity: 0.5;
 }
-.arrowLeft.dark{
+.arrowLeft.dark {
   content: url("/src/assets/svg/left-arrow.svg");
 }
-.arrowRight.dark{
+.arrowRight.dark {
   content: url("/src/assets/svg/right-arrow.svg");
 }
-.arrowLeft.light{
+.arrowLeft.light {
   content: url("/src/assets/svg/left-arrow-black.svg");
 }
-.arrowRight.light{
+.arrowRight.light {
   content: url("/src/assets/svg/right-arrow-black.svg");
 }
 .galleryCarousel {
@@ -52,7 +52,6 @@
   width: 100%;
 }
 .galleryPic {
-
   display: flex;
   gap: 1.04vw;
   overflow: hidden;
@@ -61,4 +60,30 @@
   width: 32.65vw;
   height: 24.79vw;
   object-fit: cover;
+}
+@media (max-width: 720px) {
+   .galleryContainer {
+    width: 100vw;
+    overflow-x: hidden; 
+  }
+  .galleryCarousel {
+    
+    margin-left: 8.05vw;
+    overflow-x: hidden; 
+    /* width: 100vw; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .galleryPic {
+    display: flex;
+    gap: 2.22vw;
+    /* НЕ ставьте overflow: hidden и width: 100% */
+  }
+  .galleryImg {
+    width: 64.16vw;
+    height: 49.16vw;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
 }
