@@ -18,3 +18,7 @@
 a:not(.nav-link-active):hover{
 opacity: 0.85;
 }
+body,
+body * {
+  transition: background-color 0.3s, color 0.3s;
+}

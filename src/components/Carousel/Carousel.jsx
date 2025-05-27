@@ -30,9 +30,7 @@ export const Carousel = () => {
   }, [maxIndex, currentIndex]);
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : 0
-    );
+    setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
   };
 
   const handleNext = () => {

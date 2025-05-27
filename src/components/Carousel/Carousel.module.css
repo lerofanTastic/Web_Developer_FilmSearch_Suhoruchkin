@@ -14,18 +14,14 @@
   margin-top: 5.36vw;
   margin-bottom: 5.36vw;
   width: 70%;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Скрываем карточки, выходящие за пределы видимой области */
+  overflow: hidden;
 }
-
 .carousel {
-   display: flex;
+  display: flex;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
-  gap: 5.2vw; /* Расстояние между карточками */
+  gap: 5.2vw;
 }
-
 .arrow {
   width: 2.08vw;
   height: 2.08vw;
@@ -36,11 +32,18 @@
   z-index: 10;
   transition: 0.2s;
 }
-
 .arrow.left {
   position: absolute;
   top: 50%;
   left: 5.2vw;
+}
+.arrow.right {
+  position: absolute;
+  top: 50%;
+  right: 5.2vw;
+}
+.arrow:hover {
+  opacity: 0.5;
 }
 .arrow.left.dark {
   content: url("/src/assets/svg/left-arrow.svg");
@@ -54,21 +57,12 @@
 .arrow.right.light {
   content: url("/src/assets/svg/right-arrow-black.svg");
 }
-.arrow.right {
-  position: absolute;
-  top: 50%;
-  right: 5.2vw;
-}
-.arrow:hover {
-  opacity: 0.5;
-}
-
-  @media (max-width: 720px) {
-    .main{
-      height: 148.33vw;
-    }
-    .arrow{
-      width: 3.88vw;
-      height: 7.22vw;
-    }
+@media (max-width: 720px) {
+  .main {
+    height: 148.33vw;
+  }
+  .arrow {
+    width: 3.88vw;
+    height: 7.22vw;
+  }
 }

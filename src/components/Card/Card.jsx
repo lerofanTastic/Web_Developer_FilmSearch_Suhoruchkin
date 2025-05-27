@@ -1,5 +1,4 @@
-// import React, { useEffect, useState } from "react";
-// import { fetchFilmById } from "../../constants/api";
+import React from "react";
 import styles from "./Card.module.css";
 
 export const Card = ({
@@ -13,7 +12,11 @@ export const Card = ({
         <p>{rating}</p>
       </div>
       <div className={styles.poster}>
-        <img className={styles.posterImage} src={image} alt="Постер 1" />
+        <img
+          className={styles.posterImage}
+          src={image}
+          alt={title !== "No Title :(" ? `Постер: ${title}` : "Постер"}
+        />
       </div>
       <div className={styles.title}>
         <p>{title}</p>

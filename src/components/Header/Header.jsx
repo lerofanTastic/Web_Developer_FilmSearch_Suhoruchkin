@@ -25,7 +25,7 @@ export const Header = () => {
               id="burgerCheckbox"
               className={`${styles.burgerCheckbox} ${styles[theme]}`}
             />
-            <label for="burgerCheckbox" className={`${styles.burger} ${styles[theme]}`}></label>
+            <label htmlFor="burgerCheckbox" className={`${styles.burger} ${styles[theme]}`}></label>
             <ul className={`${styles.menuList} ${styles[theme]}`}>
               <li className={styles.list}>
                 <NavLink

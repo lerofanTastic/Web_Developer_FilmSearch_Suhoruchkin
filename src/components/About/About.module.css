@@ -11,7 +11,6 @@
 .main.light {
   background-color: white;
 }
-
 .poster {
   margin-top: 7.23vw;
   margin-right: 6.61vw;
@@ -19,10 +18,6 @@
 .bigCard {
   display: flex;
   flex-direction: row;
-}
-.card {
-  width: 18.64vw;
-  height: 26.04vw;
 }
 .description {
   margin-top: 7.23vw;
@@ -74,7 +69,6 @@
   letter-spacing: 0%;
   color: #7d7d7d;
   width: 15.625vw;
-  /* gap: 0 35px; */
 }
 .typeSecond {
   font-family: Inter;
@@ -82,7 +76,6 @@
   font-size: 1.25vw;
   line-height: 135%;
   letter-spacing: 0%;
-
   width: 26.04vw;
 }
 .typeSecond.dark {
@@ -102,7 +95,6 @@
   font-size: 1.875vw;
   line-height: 135%;
   letter-spacing: 0%;
-
   margin-bottom: 3.59vw;
 }
 .trailer.dark h1 {
@@ -157,7 +149,6 @@
   }
   .poster {
     flex: none !important;
-    /* margin: 0 auto; */
     margin-left: 8.05vw;
     margin-bottom: 10vw;
     position: relative !important ;
@@ -170,18 +161,14 @@
     font-family: Inter;
     font-weight: 600;
     font-size: 10vw;
-    line-height: 120%;
+    line-height: 200%;
     letter-spacing: 0%;
     color: white;
     margin-left: 8.33vw;
     margin-top: 10vw;
-    /* margin-bottom: 100px; */
   }
   .description {
     margin-left: 8.33vw;
-    /* margin-right: 30px; */
-    /* margin: 0 auto; */
-    /* align-items: center; */
   }
   .description h2 {
     margin-bottom: 12.5vw;
@@ -243,16 +230,11 @@
     margin-bottom: 10vw;
   }
   .galleryTop {
-    /* gap: 50vw; */
     align-items: center;
-    /* justify-content: space-between;
-    margin-right: 61px;
-    margin-left: 100px; */
     display: flex;
     flex-direction: row;
   }
   .galleryArrows {
-    /* justify-content: center; */
     align-items: center;
     display: flex;
   }
@@ -283,7 +265,6 @@
     width: 80vw;
     height: 50vw;
   }
-
   .reviews h1 {
     margin-left: 8.05vw;
     font-family: Inter;
