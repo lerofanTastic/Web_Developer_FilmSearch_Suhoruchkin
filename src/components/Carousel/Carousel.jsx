@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "../Card/Card";
 import styles from "./Carousel.module.css";
-import { topAnime } from "../../constants/topAnime.js";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/Theme/themeContext";
+import { getRandomMovies } from "../../api/kinopoiskApi";
 
 export const Carousel = () => {
   const { theme } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 720);
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 720);
@@ -16,13 +18,33 @@ export const Carousel = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Сброс currentIndex при смене режима (desktop/mobile)
   useEffect(() => {
     setCurrentIndex(0);
   }, [isMobile]);
 
+  // Загрузка 6 случайных фильмов
+  useEffect(() => {
+    setLoading(true);
+    Promise.all([
+      getRandomMovies(),
+      getRandomMovies(),
+      getRandomMovies(),
+      getRandomMovies(),
+      getRandomMovies(),
+      getRandomMovies(),
+    ])
+      .then(results => {
+        // results — массив объектов, берем .docs[0] из каждого (или просто results, если API возвращает фильм)
+        const films = results
+          .map(res => Array.isArray(res.docs) ? res.docs[0] : res)
+          .filter(Boolean);
+        setMovies(films);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   const cardsToShow = isMobile ? 1 : 3;
-  const maxIndex = Math.max(0, topAnime.length - cardsToShow);
+  const maxIndex = Math.max(0, movies.length - cardsToShow);
 
   useEffect(() => {
     if (currentIndex > maxIndex) setCurrentIndex(maxIndex);
@@ -39,21 +61,23 @@ export const Carousel = () => {
     );
   };
 
-  // Корректное формирование массива карточек для отображения
+  // Формируем массив карточек для отображения
   let visibleCards = [];
-  if (topAnime.length > 0) {
+  if (movies.length > 0) {
     if (isMobile) {
-      visibleCards = [topAnime[Math.min(currentIndex, topAnime.length - 1)]];
+      visibleCards = [movies[Math.min(currentIndex, movies.length - 1)]];
     } else {
-      visibleCards = topAnime.slice(currentIndex, currentIndex + cardsToShow);
+      visibleCards = movies.slice(currentIndex, currentIndex + cardsToShow);
       if (visibleCards.length < cardsToShow) {
         visibleCards = [
           ...visibleCards,
-          ...topAnime.slice(0, cardsToShow - visibleCards.length),
+          ...movies.slice(0, cardsToShow - visibleCards.length),
         ];
       }
     }
   }
+
+  if (loading) return <div>Загрузка...</div>;
 
   return (
     <div className={styles.main}>
@@ -76,14 +100,14 @@ export const Carousel = () => {
           }}
         >
           {visibleCards.map(
-            (anime) =>
-              anime && (
-                <Link to={`/movie/${anime.id}`} key={anime.id}>
+            (movie) =>
+              movie && (
+                <Link to={`/movie/${movie.id}`} key={movie.id}>
                   <Card
-                    key={anime.id}
-                    title={anime.title}
-                    image={anime.image}
-                    rating={anime.rating}
+                    key={movie.id}
+                    title={movie.name}
+                    image={movie.poster?.url}
+                    rating={movie.rating?.kp}
                   />
                 </Link>
               )
