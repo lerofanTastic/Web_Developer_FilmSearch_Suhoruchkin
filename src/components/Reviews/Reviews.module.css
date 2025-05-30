@@ -3,6 +3,7 @@
   margin-top: 5.52vw;
   /* margin-bottom: 5.52vw; */
   display: flex;
+  /* flex-wrap: wrap; */
   flex-direction: column;
   margin-bottom: 7.76vw;
 }
@@ -30,7 +31,7 @@
   flex-direction: column;
 
   width: 32.65vw;
-  height: 24.79vw;
+  height: auto;
 }
 .reviewBox.dark {
   background-color: black;
@@ -88,6 +89,7 @@
   width: 1.77vw;
   height: 1.77vw;
 }
+
 @media (max-width: 720px) {
   .reviews {
   }
@@ -108,7 +110,7 @@
   }
   .reviewBox {
     width: 85.55vw;
-    height: 140vw;
+    height: auto;
     margin-bottom: 10vw;
   }
   .reviewBox.dark {

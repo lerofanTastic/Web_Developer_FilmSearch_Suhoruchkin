@@ -14,6 +14,8 @@
 .poster {
   margin-top: 7.23vw;
   margin-right: 6.61vw;
+  margin-left:  15vw;
+  /* width: 50%; */
 }
 .bigCard {
   display: flex;
@@ -24,6 +26,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .description h1 {
   margin: 0;
   font-family: Inter;
@@ -31,6 +34,7 @@
   font-size: 3.33vw;
   line-height: 135%;
   letter-spacing: 0%;
+  width: 50%;
 }
 .description.dark h1 {
   color: white;
@@ -84,42 +88,8 @@
 .typeSecond.light {
   color: black;
 }
-.trailer {
-  display: flex;
-  flex-direction: column;
-  margin-top: 4.32vw;
-}
-.trailer h1 {
-  font-family: Inter;
-  font-weight: 600;
-  font-size: 1.875vw;
-  line-height: 135%;
-  letter-spacing: 0%;
-  margin-bottom: 3.59vw;
-}
-.trailer.dark h1 {
-  color: white;
-}
-.trailer.light h1 {
-  color: black;
-}
-.gallery {
-  margin-top: 5.1vw;
-}
-.gallery h1 {
-  margin-bottom: 3.59vw;
-  font-family: Inter;
-  font-weight: 600;
-  font-size: 1.875vw;
-  line-height: 135%;
-  letter-spacing: 0%;
-}
-.gallery.dark h1 {
-  color: white;
-}
-.gallery.light h1 {
-  color: black;
-}
+
+
 
 .mainHeaderMob {
   position: absolute;
@@ -132,12 +102,7 @@
 .mainHeaderMob.light {
   color: black;
 }
-.galleryArrows img {
-  top: 0;
-  right: 0;
-  position: absolute;
-  visibility: hidden;
-}
+
 
 @media (max-width: 720px) {
   .main {
@@ -202,69 +167,8 @@
     letter-spacing: 0%;
     width: 90vw;
   }
-  .trailerHeader {
-    margin: 0;
-    margin-top: 21.38vw;
-    margin-bottom: 10vw;
-    margin-left: 8.05vw;
-  }
-  .trailerHeader h1 {
-    margin: 0;
-    font-family: Inter;
-    font-weight: 600;
-    font-size: 7.77vw;
-    line-height: 120%;
-    letter-spacing: 0%;
-  }
-  .gallery {
-    margin-bottom: 21.38vw;
-  }
-  .galleryHeader h1 {
-    margin-left: 8.05vw;
-    margin-right: 27.77vw;
-    font-family: Inter;
-    font-weight: 600;
-    font-size: 7.77vw;
-    line-height: 120%;
-    letter-spacing: 0%;
-    margin-bottom: 10vw;
-  }
-  .galleryTop {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-  }
-  .galleryArrows {
-    align-items: center;
-    display: flex;
-  }
-  .galleryArrowLeft.dark {
-    content: url("/src/assets/svg/left-arrow.svg");
-  }
-  .galleryArrowRight.dark {
-    content: url("/src/assets/svg/right-arrow.svg");
-  }
-  .galleryArrowLeft.light {
-    content: url("/src/assets/svg/left-arrow-black.svg");
-  }
-  .galleryArrowRight.light {
-    content: url("/src/assets/svg/right-arrow-black.svg");
-  }
-  .galleryArrows img {
-    margin-right: 10.55vw;
-    width: 2.5vw;
-    height: 4.44vw;
-    position: relative;
-    visibility: visible;
-  }
-  .galleryPic {
-    margin-left: 8.05vw;
-    overflow-x: hidden;
-  }
-  .galleryImg {
-    width: 80vw;
-    height: 50vw;
-  }
+  
+  
   .reviews h1 {
     margin-left: 8.05vw;
     font-family: Inter;

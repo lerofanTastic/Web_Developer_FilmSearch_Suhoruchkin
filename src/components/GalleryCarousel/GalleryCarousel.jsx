@@ -3,11 +3,11 @@ import styles from "./GalleryCarousel.module.css";
 import { useTheme } from "../../context/Theme/themeContext";
 
 export const GalleryCarousel = ({ src }) => {
-  const { theme } = useTheme();
-  const [currentIndex, setCurrentIndex] = useState(0); // Индекс текущего изображения
+  const { theme, isMobile } = useTheme();
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    console.log("Полученные изображения:", src); // Отладочный вывод
+    console.log("Полученные изображения:", src);
   }, [src]);
 
   const handleNext = () => {
@@ -21,16 +21,30 @@ export const GalleryCarousel = ({ src }) => {
       prevIndex - 1 < 0 ? src.length - 1 : prevIndex - 1
     );
   };
+
   return (
     <div className={styles.galleryContainer}>
-      {currentIndex > 0 && (
-        <img
-          className={`${styles.arrowLeft} ${styles[theme]}`}
-          // src="/src/assets/svg/left-arrow.svg"
-          alt="Left Arrow"
-          onClick={handlePrev}
-        />
-      )}
+      <div className={`${styles.galleryHeader} ${styles[theme]}`}>
+        <h1>Галерея</h1>
+        {isMobile && (
+          <div className={styles.mobileArrows}>
+            {currentIndex > 0 && (
+              <img
+                className={`${styles.arrowLeft} ${styles[theme]}`}
+                alt="Left Arrow"
+                onClick={handlePrev}
+              />
+            )}
+            {currentIndex + 2 < src.length && (
+              <img
+                className={`${styles.arrowRight} ${styles[theme]}`}
+                alt="Right Arrow"
+                onClick={handleNext}
+              />
+            )}
+          </div>
+        )}
+      </div>
       <div className={styles.galleryCarousel}>
         <div className={styles.galleryPic}>
           {src && src.length > 0 ? (
@@ -49,10 +63,16 @@ export const GalleryCarousel = ({ src }) => {
           )}
         </div>
       </div>
-      {currentIndex + 2 < src.length && (
+      {!isMobile && currentIndex > 0 && (
+        <img
+          className={`${styles.arrowLeft} ${styles[theme]}`}
+          alt="Left Arrow"
+          onClick={handlePrev}
+        />
+      )}
+      {!isMobile && currentIndex + 2 < src.length && (
         <img
           className={`${styles.arrowRight} ${styles[theme]}`}
-          // src="/src/assets/svg/right-arrow.svg"
           alt="Right Arrow"
           onClick={handleNext}
         />

@@ -1,71 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./Reviews.module.css";
 import { useTheme } from "../../context/Theme/themeContext";
-import { topAnime } from "../../constants/topAnime.js";
-import { useParams } from "react-router-dom";
 
-export const Reviews = () => {
-  const { theme } = useTheme();
-  const { id } = useParams();
-  const aboutAnime = topAnime.find((anime) => anime.id === parseInt(id));
+export const Reviews = ({ reviews = [] }) => {
+  const { theme, isMobile } = useTheme();
 
-  // Определяем мобильную версию
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 720);
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 720);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  if (!aboutAnime) {
-    return <div>Элемент с указанным ID не найден</div>;
+  if (!reviews || reviews.length === 0) {
+    return <div>Рецензии не найдены</div>;
   }
 
-  const reviewNames = aboutAnime.reviewName || [];
-  const reviewStars = aboutAnime.stars || [];
-  const reviewTexts = aboutAnime.reviewText || [];
+  // Определяем путь к звезде
+  const starSrc =
+    isMobile || theme === "light"
+      ? "/src/assets/svg/star-black.svg"
+      : "/src/assets/svg/star-white.svg";
+  const starTransSrc =
+    isMobile || theme === "light"
+      ? "/src/assets/svg/star-black-trans.svg"
+      : "/src/assets/svg/star-white-trans.svg";
 
   return (
     <div className={`${styles.reviews} ${styles[theme]}`}>
       <h1>Рецензии зрителей</h1>
       <div className={styles.reviewsContainer}>
-        {reviewNames.map((name, idx) => (
-          <div className={`${styles.reviewBox} ${styles[theme]}`} key={idx}>
-            <h2>{name}</h2>
-            {(theme === "dark" && !isMobile) ? (
-              <div className={styles.whiteStarContainer}>
-                {Array.from({ length: 10 }).map((_, index) => (
-                  <img
-                    key={index}
-                    className={styles.starWrapper}
-                    src={
-                      index < (Array.isArray(reviewStars) ? reviewStars[idx] : reviewStars)
-                        ? "/src/assets/svg/star-white.svg"
-                        : "/src/assets/svg/star-white-trans.svg"
-                    }
-                    alt="Star"
-                  />
-                ))}
-              </div>
-            ) : (
+        {reviews.map((review, idx) => {
+          let stars = 0;
+          if (typeof review.rating === "number" && review.rating > 0) {
+            stars = review.rating;
+          } else if (review.type === "Позитивный") {
+            stars = 8;
+          } else if (review.type === "Негативный") {
+            stars = 4;
+          }
+
+          return (
+            <div className={`${styles.reviewBox} ${styles[theme]}`} key={idx}>
+              <h2>{review.author || "Аноним"}</h2>
               <div className={styles.blackStarContainer}>
-                {Array.from({ length: 10 }).map((_, index) => (
-                  <img
-                    key={index}
-                    className={styles.starWrapper}
-                    src={
-                      index < (Array.isArray(reviewStars) ? reviewStars[idx] : reviewStars)
-                        ? "/src/assets/svg/star-black.svg"
-                        : "/src/assets/svg/star-black-trans.svg"
-                    }
-                    alt="Star"
-                  />
-                ))}
+                {stars > 0 ? (
+                  Array.from({ length: 10 }).map((_, index) => (
+                    <img
+                      key={index}
+                      className={styles.starWrapper}
+                      src={index < stars ? starSrc : starTransSrc}
+                      alt="Star"
+                    />
+                  ))
+                ) : (
+                  <span className={styles.noRating}>Нет оценки</span>
+                )}
               </div>
-            )}
-            <p>{reviewTexts[idx]}</p>
-          </div>
-        ))}
+              <p>{review.review || review.title || ""}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

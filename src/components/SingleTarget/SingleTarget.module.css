@@ -1,4 +1,123 @@
 .single {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  /* gap: 50px; */
+}
+.about{
+  display: flex;
+
+}
+.single.dark {
+  background-color: #1d1d1d;
+}
+.single.light {
+  background-color: white;
+}
+.trailer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4.32vw;
+  
+}
+
+.gallery {
+  margin-top: 5.1vw;
+}
+
+
+@media (max-width: 720px) {
+  
+   .trailer{
+    margin-bottom: 15vw;
+   }
+  .gallery {
+    margin-bottom: 21.38vw;
+  }
+  
+  .galleryTop {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+  }
+  .galleryArrows {
+    align-items: center;
+    display: flex;
+  }
+  .galleryArrowLeft.dark {
+    content: url("/src/assets/svg/left-arrow.svg");
+  }
+  .galleryArrowRight.dark {
+    content: url("/src/assets/svg/right-arrow.svg");
+  }
+  .galleryArrowLeft.light {
+    content: url("/src/assets/svg/left-arrow-black.svg");
+  }
+  .galleryArrowRight.light {
+    content: url("/src/assets/svg/right-arrow-black.svg");
+  }
+  .galleryArrows img {
+    margin-right: 10.55vw;
+    width: 2.5vw;
+    height: 4.44vw;
+    position: relative;
+    visibility: visible;
+  }
+  .galleryPic {
+    margin-left: 8.05vw;
+    overflow-x: hidden;
+  }
+  .galleryImg {
+    width: 80vw;
+    height: 50vw;
+  }
+  .gallery {
+    margin-bottom: 21.38vw;
+  }
+  .galleryHeader h1 {
+    margin-left: 8.05vw;
+    margin-right: 27.77vw;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 7.77vw;
+    line-height: 120%;
+    letter-spacing: 0%;
+    margin-bottom: 10vw;
+  }
+  .galleryTop {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+  }
+  .galleryArrows {
+    align-items: center;
+    display: flex;
+  }
+  .galleryArrowLeft.dark {
+    content: url("/src/assets/svg/left-arrow.svg");
+  }
+  .galleryArrowRight.dark {
+    content: url("/src/assets/svg/right-arrow.svg");
+  }
+  .galleryArrowLeft.light {
+    content: url("/src/assets/svg/left-arrow-black.svg");
+  }
+  .galleryArrowRight.light {
+    content: url("/src/assets/svg/right-arrow-black.svg");
+  }
+  .galleryArrows img {
+    margin-right: 10.55vw;
+    width: 2.5vw;
+    height: 4.44vw;
+    position: relative;
+    visibility: visible;
+  }
+  .galleryPic {
+    margin-left: 8.05vw;
+    overflow-x: hidden;
+  }
+  .galleryImg {
+    width: 80vw;
+    height: 50vw;
+  }
 }

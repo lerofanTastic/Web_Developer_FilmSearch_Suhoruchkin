@@ -1,32 +1,54 @@
 import { useParams } from "react-router-dom";
-import { topAnime } from "../../constants/topAnime";
+import { useEffect, useState } from "react";
+import {
+  getImagesByMovieId,
+  getMovieById,
+  getReviewsByMovieId,
+} from "../../api/kinopoiskApi";
 import { About } from "../About/About";
-import { Search } from "../Search/Search";
-import styles from "./SingleTarget.module.css"
+import { VideoPlayer } from "../VideoPlayer/VideoPlayer";
+import { GalleryCarousel } from "../GalleryCarousel/GalleryCarousel";
+import { Reviews } from "../Reviews/Reviews";
+import styles from "./SingleTarget.module.css";
+import { useTheme } from "../../context/Theme/themeContext";
 
 export const SingleTarget = () => {
-  const { id } = useParams(); // Получаем id из параметров маршрута
-  const aboutAnime = topAnime.find((anime) => anime.id === parseInt(id)); // Ищем элемент по id
+  const { id } = useParams();
+  const [movie, setMovie] = useState(null);
+  const [gallery, setGallery] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [reviews, setReviews] = useState([]);
+  const { theme } = useTheme();
 
-  if (!aboutAnime) {
-    return <div>Элемент с указанным ID не найден</div>;
-  }
+  useEffect(() => {
+    getReviewsByMovieId(id, 2).then(setReviews);
+  }, [id]);
+
+  useEffect(() => {
+    setLoading(true);
+    getMovieById(id)
+      .then(setMovie)
+      .finally(() => setLoading(false));
+    getImagesByMovieId(id, 10).then(setGallery);
+  }, [id]);
+
+  if (loading) return <div>Загрузка...</div>;
+  if (!movie) return <div>Фильм/сериал не найден</div>;
+
   return (
-    <div className={styles.single}>
-      <Search />
-      <About
-        title={aboutAnime.title}
-        description={aboutAnime.description}
-        image={aboutAnime.image}
-        trailer={aboutAnime.trailer}
-        rating={aboutAnime.rating}
-        genre={aboutAnime.genre}
-        country={aboutAnime.country}
-        actors={aboutAnime.actors}
-        writers={aboutAnime.writers}
-        date={aboutAnime.date}
-        age={aboutAnime.age}
-      />
+    <div className={`${styles.single} ${styles[theme]}`}>
+      <div className={styles.about}>
+        <About movie={movie} />
+      </div>
+      <div className={`${styles.trailer} ${styles[theme]}`}>
+        <VideoPlayer trailer={movie.videos?.trailers?.[0]?.url} />
+      </div>
+      <div className={`${styles.gallery} ${styles[theme]}`}>
+        <GalleryCarousel src={gallery} />
+      </div>
+      <div className={styles.reviews}>
+        <Reviews reviews={reviews} />
+      </div>
     </div>
   );
 };

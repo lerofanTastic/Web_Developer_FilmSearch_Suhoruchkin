@@ -243,3 +243,58 @@ export function getCountries() {
       return data;
     });
 }
+/**
+ * Получить детальную информацию о фильме или сериале по id
+ * @param {number|string} id - ID фильма или сериала
+ * @returns {Promise<object>}
+ */
+export function getMovieById(id) {
+  return fetch(`https://api.kinopoisk.dev/v1.4/movie/${id}`, {
+    headers: { "X-API-KEY": API_KEY },
+  }).then((res) => {
+    if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
+    return res.json();
+  });
+}
+/**
+ * Получить изображения для фильма/сериала по id
+ * @param {number|string} id - ID фильма или сериала
+ * @param {number} [limit=10] - Количество изображений
+ * @returns {Promise<string[]>} - Массив ссылок на изображения
+ */
+export function getImagesByMovieId(id, limit = 10) {
+  return fetch(
+    `https://api.kinopoisk.dev/v1.4/image?page=1&limit=${limit}&movieId=${id}`,
+    {
+      headers: { "X-API-KEY": API_KEY },
+    }
+  )
+    .then((res) => {
+      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
+      return res.json();
+    })
+    .then((data) =>
+      Array.isArray(data.docs)
+        ? data.docs.map((img) => img.url).filter(Boolean)
+        : []
+    );
+}
+/**
+ * Получить отзывы (рецензии) для фильма/сериала по id
+ * @param {number|string} id - ID фильма или сериала
+ * @param {number} [limit=2] - Количество отзывов
+ * @returns {Promise<object[]>} - Массив отзывов
+ */
+export function getReviewsByMovieId(id, limit = 2) {
+  return fetch(
+    `https://api.kinopoisk.dev/v1.4/review?page=1&limit=${limit}&movieId=${id}`,
+    {
+      headers: { "X-API-KEY": API_KEY },
+    }
+  )
+    .then((res) => {
+      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
+      return res.json();
+    })
+    .then((data) => (Array.isArray(data.docs) ? data.docs : []));
+}

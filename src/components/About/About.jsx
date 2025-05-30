@@ -8,31 +8,28 @@ import { GalleryCarousel } from "../GalleryCarousel/GalleryCarousel.jsx";
 import { useTheme } from "../../context/Theme/themeContext";
 import { Reviews } from "../Reviews/Reviews.jsx";
 
-export const About = ({
-  title = "No Title :(",
-  genre = "No Genre :(",
-  country = "No Country :(",
-  actors = "No Actors :(",
-  writers = "No Writers :(",
-  date = "No Date :(",
-  age = "No Age :(",
-}) => {
+export const About = ({ movie }) => {
   const { theme } = useTheme();
-  const { id } = useParams();
-  const aboutAnime = topAnime.find((anime) => anime.id === parseInt(id));
 
-  if (!aboutAnime) {
-    return <div>Элемент с указанным ID не найден</div>;
-  }
+  if (!movie) return <div>Нет данных</div>;
 
-  // Используем данные из aboutAnime, если они есть
-  const displayTitle = aboutAnime.title || title;
-  const displayGenre = aboutAnime.genre || genre;
-  const displayCountry = aboutAnime.country || country;
-  const displayActors = aboutAnime.actors || actors;
-  const displayWriters = aboutAnime.writers || writers;
-  const displayDate = aboutAnime.date || date;
-  const displayAge = aboutAnime.age || age;
+  const displayTitle = movie.name || movie.alternativeName || "Нет названия";
+  const displayGenre =
+    movie.genres?.map((g) => g.name).join(", ") || "Нет жанра";
+  const displayCountry =
+    movie.countries?.map((c) => c.name).join(", ") || "Нет страны";
+  const displayActors =
+    movie.persons
+      ?.filter((p) => p.profession === "актеры")
+      .map((p) => p.name)
+      .join(", ") || "Нет актёров";
+  const displayWriters =
+    movie.persons
+      ?.filter((p) => p.profession === "режиссеры")
+      .map((p) => p.name)
+      .join(", ") || "Нет режиссёров";
+  const displayDate = movie.year || "Нет даты";
+  const displayAge = movie.ageRating ? `${movie.ageRating}+` : "Нет данных";
 
   return (
     <div className={`${styles.main} ${styles[theme]}`}>
@@ -41,7 +38,7 @@ export const About = ({
           <h1>{displayTitle}</h1>
         </div>
         <div className={styles.poster}>
-          <Card title="" image={aboutAnime.image} rating={aboutAnime.rating} />
+          <Card title="" image={movie.poster?.url} rating={movie.rating?.kp} />
         </div>
         <div className={`${styles.description} ${styles[theme]}`}>
           <h1>{displayTitle}</h1>
@@ -86,41 +83,6 @@ export const About = ({
           </div>
         </div>
       </div>
-      <div className={`${styles.trailer} ${styles[theme]}`}>
-        <div className={styles.trailerHeader}>
-          <h1>Трейлер</h1>
-        </div>
-        <VideoPlayer />
-      </div>
-      <div className={`${styles.gallery} ${styles[theme]}`}>
-        <div className={styles.galleryTop}>
-          <div className={styles.galleryHeader}>
-            <h1>Галерея</h1>
-          </div>
-          <div className={styles.galleryArrows}>
-            <img
-              className={`${styles.galleryArrowLeft} ${styles[theme]}`}
-              alt="Left Arrow"
-              src={
-                theme === "dark"
-                  ? "/src/assets/svg/left-arrow.svg"
-                  : "/src/assets/svg/left-arrow-black.svg"
-              }
-            />
-            <img
-              className={`${styles.galleryArrowRight} ${styles[theme]}`}
-              alt="Right Arrow"
-              src={
-                theme === "dark"
-                  ? "/src/assets/svg/right-arrow.svg"
-                  : "/src/assets/svg/right-arrow-black.svg"
-              }
-            />
-          </div>
-        </div>
-        <GalleryCarousel src={aboutAnime.src} />
-      </div>
-      <Reviews />
     </div>
   );
 };
