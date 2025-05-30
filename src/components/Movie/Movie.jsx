@@ -1,16 +1,35 @@
-import React from "react";
-import { Search } from "../Search/Search";
+import React, { useState } from "react";
+import { Filter } from "../Filter/Filter";
 import { MovieList } from "../MovieList/MovieList";
 import styles from "./Movie.module.css";
-import { Filter } from "../Filter/Filter";
+import { Search } from "../Search/Search";
 
 export const Movie = () => {
+  const [genre, setGenre] = useState("");
+  const [country, setCountry] = useState("");
+  const [rating, setRating] = useState("");
+  const [year, setYear] = useState("");
+
   return (
     <div>
       <Search />
       <div className={styles.main}>
-        <Filter />
-        <MovieList />
+        <Filter
+          genre={genre}
+          setGenre={setGenre}
+          country={country}
+          setCountry={setCountry}
+          rating={rating}
+          setRating={setRating}
+          year={year}
+          setYear={setYear}
+        />
+        <MovieList
+          genre={genre}
+          country={country}
+          rating={rating}
+          year={year}
+        />
       </div>
     </div>
   );

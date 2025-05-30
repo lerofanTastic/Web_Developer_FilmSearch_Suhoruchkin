@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Card } from "../Card/Card";
 import styles from "./MovieList.module.css";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/Theme/themeContext";
-import { searchMoviesByFilters } from "../../api/kinopoiskApi";
+import { getNineMovies, universalMovieSearch } from "../../api/kinopoiskApi";
 
 export const MovieList = ({ genre, country, rating, year }) => {
   const { theme } = useTheme();
@@ -11,6 +11,11 @@ export const MovieList = ({ genre, country, rating, year }) => {
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 720);
+  const [page, setPage] = useState(1);
+  const [pages, setPages] = useState(1); // <--- добавлено
+  const hasFilters =
+    genre !== "" || country !== "" || rating !== "" || year !== "";
+  const cacheRef = useRef({});
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 720);
@@ -21,20 +26,62 @@ export const MovieList = ({ genre, country, rating, year }) => {
   useEffect(() => {
     setCurrentIndex(0);
   }, [isMobile, genre, country, rating, year]);
+  useEffect(() => {
+    setPage(1);
+  }, [genre, country, rating, year]);
 
   useEffect(() => {
+    const controller = new AbortController();
     setLoading(true);
-    searchMoviesByFilters({
-      genre,
-      country,
-      rating,
-      year,
-      page: 1,
-      limit: 9,
-    })
-      .then(data => setMovies(data.docs || []))
+
+    const cacheKey = JSON.stringify({ genre, country, rating, year, page });
+
+    if (cacheRef.current[cacheKey]) {
+      setMovies(cacheRef.current[cacheKey].movies);
+      setPages(cacheRef.current[cacheKey].pages);
+      setLoading(false);
+      return;
+    }
+
+    const fetchMovies = hasFilters
+      ? universalMovieSearch({
+          genre,
+          country,
+          rating,
+          year,
+          page,
+          limit: 9,
+        })
+      : getNineMovies();
+
+    Promise.resolve(fetchMovies)
+      .then((data) => {
+        let moviesArr = [];
+        let totalPages = 1;
+        if (hasFilters) {
+          if (Array.isArray(data?.docs)) moviesArr = data.docs;
+          else if (Array.isArray(data)) moviesArr = data;
+          totalPages = data?.pages || 1;
+          setPages(totalPages);
+        } else {
+          const unique = [];
+          const ids = new Set();
+          for (const film of data) {
+            if (film && film.id && !ids.has(film.id)) {
+              unique.push(film);
+              ids.add(film.id);
+            }
+          }
+          moviesArr = unique;
+          setPages(1);
+        }
+        cacheRef.current[cacheKey] = { movies: moviesArr, pages: totalPages };
+        setMovies(moviesArr);
+      })
       .finally(() => setLoading(false));
-  }, [genre, country, rating, year]);
+
+    return () => controller.abort();
+  }, [genre, country, rating, year, page]);
 
   const handlePrev = () => setCurrentIndex((prev) => (prev > 0 ? prev - 1 : 0));
   const handleNext = () =>
@@ -42,16 +89,62 @@ export const MovieList = ({ genre, country, rating, year }) => {
       prev < movies.length - 1 ? prev + 1 : movies.length - 1
     );
 
-  // Для мобильной версии показываем только одну карточку
   const visibleMovies = isMobile
     ? [movies[currentIndex]].filter(Boolean)
     : movies;
 
+  const getPagination = () => {
+    const arr = [];
+    // Начальная страница для диапазона
+    let start = Math.max(1, page - 2);
+    // Конечная страница для диапазона
+    let end = Math.min(pages, page + 2);
+
+    // Если не хватает страниц слева, добавляем справа
+    if (page <= 2) {
+      end = Math.min(pages, 5);
+    }
+    // Если не хватает страниц справа, добавляем слева
+    if (page >= pages - 1) {
+      start = Math.max(1, pages - 4);
+    }
+
+    for (let i = start; i <= end; i++) {
+      arr.push(i);
+    }
+    return arr;
+  };
+
+  const pageNumbers = getPagination();
   return (
     <div className={`${styles.mainRight} ${styles[theme]}`}>
       <div className={styles.mainRightTop}>
         <div className={`${styles.mainRightTopHeader} ${styles[theme]}`}>
           <h1>Фильмы</h1>
+        </div>
+        <div className={styles.pagination}>
+          {hasFilters && pages > 1 && (
+            <div className={`${styles.pagesRow} ${styles[theme]}`}>
+              {pageNumbers.map((p, idx) =>
+                p === "..." ? (
+                  <span key={`ellipsis-${idx}`} className={styles.ellipsis}>
+                    ...
+                  </span>
+                ) : (
+                  <button
+                    key={p}
+                    className={`${p === page ? styles.activePage : ""} ${
+                      styles[theme]
+                    }`}
+                    onClick={() => setPage(p)}
+                    disabled={p === page}
+                  >
+                    {p}
+                  </button>
+                )
+              )}
+            </div>
+          )}
         </div>
       </div>
       <div className={styles.mainCards}>
@@ -63,12 +156,12 @@ export const MovieList = ({ genre, country, rating, year }) => {
             onClick={handlePrev}
           />
         )}
+
         {visibleMovies.map(
-          (movie) =>
+          (movie, idx) =>
             movie && (
-              <Link to={`/movie/${movie.id}`} key={movie.id}>
+              <Link to={`/movie/${movie.id || idx}`} key={movie.id || idx}>
                 <Card
-                  key={movie.id}
                   title={movie.name}
                   image={movie.poster?.url}
                   rating={movie.rating?.kp}

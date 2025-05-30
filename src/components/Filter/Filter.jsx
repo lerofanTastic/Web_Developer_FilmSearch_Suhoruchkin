@@ -2,14 +2,22 @@ import React, { useState, useEffect } from "react";
 import styles from "./Filter.module.css";
 import { useTheme } from "../../context/Theme/themeContext";
 import { useLocation } from "react-router-dom";
-import { getGenres, getRatings, getCountries, getYears } from "../../api/kinopoiskApi";
+import { getGenres, getCountries } from "../../api/kinopoiskApi";
 
-export const Filter = () => {
+export const Filter = ({
+  genre,
+  setGenre,
+  country,
+  setCountry,
+  rating,
+  setRating,
+  year,
+  setYear,
+}) => {
   const { theme } = useTheme();
   const location = useLocation();
   const header = location.pathname.startsWith("/series") ? "Сериалы" : "Фильмы";
 
-  // Состояния для каждого select
   const [openSelect, setOpenSelect] = useState({
     genre: false,
     rating: false,
@@ -17,25 +25,39 @@ export const Filter = () => {
     year: false,
   });
 
-  // Списки для селектов
   const [genres, setGenres] = useState([]);
-  const [ratings, setRatings] = useState([]);
   const [countries, setCountries] = useState([]);
-  const [years, setYears] = useState([]);
 
-  // Получение данных для фильтров
   useEffect(() => {
-    getGenres().then(data => setGenres(data.values || []));
-    getRatings().then(data => setRatings(data.values || []));
-    getCountries().then(data => setCountries(data.values || []));
-    getYears().then(data => setYears(data.values || []));
+    getGenres()
+      .then((data) => {
+        setGenres(Array.isArray(data) ? data.map((item) => item.name) : []);
+      })
+      .catch(() => setGenres([]));
+    getCountries()
+      .then((data) => {
+        setCountries(Array.isArray(data) ? data.map((item) => item.name) : []);
+      })
+      .catch(() => setCountries([]));
   }, []);
 
-  // Функции для открытия/закрытия
   const handleFocus = (name) =>
     setOpenSelect((prev) => ({ ...prev, [name]: true }));
   const handleBlur = (name) =>
     setOpenSelect((prev) => ({ ...prev, [name]: false }));
+
+  // Генерация массива рейтингов с шагом 0.1
+  const ratingRanges = [];
+  ratingRanges.push({ label: "от 0 до 1", value: "0-1" });
+  for (let i = 1; i < 10; i++) {
+    ratingRanges.push({ label: `от ${i} до ${i + 1}`, value: `${i}-${i + 1}` });
+  }
+
+  // Генерация массива годов
+  const years = [];
+  for (let y = 2024; y >= 1874; y--) {
+    years.push(y);
+  }
 
   return (
     <div className={`${styles.mainLeft} ${styles[theme]}`}>
@@ -43,79 +65,112 @@ export const Filter = () => {
         <h1>{header}</h1>
       </div>
       <div className={styles.filter}>
-        <form className={`${styles.category} ${styles[theme]}`} id="genreFilter">
+        {/* Жанр */}
+        <form
+          className={`${styles.category} ${styles[theme]}`}
+          id="genreFilter"
+        >
           <label htmlFor="genre">Жанр</label>
           <div className={styles.selectWrapper}>
             <select
               id="genre"
+              value={genre}
               onFocus={() => handleFocus("genre")}
               onBlur={() => handleBlur("genre")}
-              onChange={(e) => e.target.blur()}
+              onChange={(e) => setGenre(e.target.value)}
             >
               <option value="">Выберите жанр</option>
               {genres.map((genre) => (
-                <option key={genre} value={genre}>{genre}</option>
+                <option key={genre} value={genre}>
+                  {genre}
+                </option>
               ))}
             </select>
             <span
-              className={`${styles.arrow} ${openSelect.genre ? styles.arrowOpen : ""}`}
+              className={`${styles.arrow} ${
+                openSelect.genre ? styles.arrowOpen : ""
+              }`}
             ></span>
           </div>
         </form>
-        <form className={`${styles.category} ${styles[theme]}`} id="ratingFilter">
+        {/* Рейтинг */}
+        <form
+          className={`${styles.category} ${styles[theme]}`}
+          id="ratingFilter"
+        >
           <label htmlFor="rating">Рейтинг</label>
           <div className={styles.selectWrapper}>
             <select
               id="rating"
+              value={rating}
               onFocus={() => handleFocus("rating")}
               onBlur={() => handleBlur("rating")}
-              onChange={(e) => e.target.blur()}
+              onChange={(e) => setRating(e.target.value)}
             >
               <option value="">Выберите рейтинг</option>
-              {ratings.map((rating) => (
-                <option key={rating} value={rating}>{rating}</option>
+              {ratingRanges.map((r) => (
+                <option key={r.value} value={r.value}>
+                  {r.label}
+                </option>
               ))}
             </select>
             <span
-              className={`${styles.arrow} ${openSelect.rating ? styles.arrowOpen : ""}`}
+              className={`${styles.arrow} ${
+                openSelect.rating ? styles.arrowOpen : ""
+              }`}
             ></span>
           </div>
         </form>
-        <form className={`${styles.category} ${styles[theme]}`} id="countryFilter">
+        {/* Страна */}
+        <form
+          className={`${styles.category} ${styles[theme]}`}
+          id="countryFilter"
+        >
           <label htmlFor="country">Страна</label>
           <div className={styles.selectWrapper}>
             <select
               id="country"
+              value={country}
               onFocus={() => handleFocus("country")}
               onBlur={() => handleBlur("country")}
-              onChange={(e) => e.target.blur()}
+              onChange={(e) => setCountry(e.target.value)}
             >
               <option value="">Выберите страну</option>
               {countries.map((country) => (
-                <option key={country} value={country}>{country}</option>
+                <option key={country} value={country}>
+                  {country}
+                </option>
               ))}
             </select>
             <span
-              className={`${styles.arrow} ${openSelect.country ? styles.arrowOpen : ""}`}
+              className={`${styles.arrow} ${
+                openSelect.country ? styles.arrowOpen : ""
+              }`}
             ></span>
           </div>
         </form>
+        {/* Год */}
         <form className={`${styles.category} ${styles[theme]}`} id="yearFilter">
           <label htmlFor="year">Год выпуска</label>
           <div className={styles.selectWrapper}>
             <select
               id="year"
+              value={year}
               onFocus={() => handleFocus("year")}
               onBlur={() => handleBlur("year")}
-              onChange={(e) => e.target.blur()}
+              onChange={(e) => setYear(e.target.value)}
             >
               <option value="">Выберите год</option>
-              {years.map((year) => (
-                <option key={year} value={year}>{year}</option>
+              {years.map((y) => (
+                <option key={y} value={y}>
+                  {y}
+                </option>
               ))}
             </select>
             <span
-              className={`${styles.arrow} ${openSelect.year ? styles.arrowOpen : ""}`}
+              className={`${styles.arrow} ${
+                openSelect.year ? styles.arrowOpen : ""
+              }`}
             ></span>
           </div>
         </form>

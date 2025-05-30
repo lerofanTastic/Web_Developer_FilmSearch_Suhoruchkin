@@ -3,7 +3,7 @@ import { Card } from "../Card/Card";
 import styles from "./Carousel.module.css";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/Theme/themeContext";
-import { getRandomMovies } from "../../api/kinopoiskApi";
+import { getSixMovies } from "../../api/kinopoiskApi";
 
 export const Carousel = () => {
   const { theme } = useTheme();
@@ -24,24 +24,13 @@ export const Carousel = () => {
 
   // Загрузка 6 случайных фильмов
   useEffect(() => {
-    setLoading(true);
-    Promise.all([
-      getRandomMovies(),
-      getRandomMovies(),
-      getRandomMovies(),
-      getRandomMovies(),
-      getRandomMovies(),
-      getRandomMovies(),
-    ])
-      .then(results => {
-        // results — массив объектов, берем .docs[0] из каждого (или просто results, если API возвращает фильм)
-        const films = results
-          .map(res => Array.isArray(res.docs) ? res.docs[0] : res)
-          .filter(Boolean);
-        setMovies(films);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  setLoading(true);
+  getSixMovies()
+    .then(films => {
+      setMovies(films);
+    })
+    .finally(() => setLoading(false));
+}, []);
 
   const cardsToShow = isMobile ? 1 : 3;
   const maxIndex = Math.max(0, movies.length - cardsToShow);

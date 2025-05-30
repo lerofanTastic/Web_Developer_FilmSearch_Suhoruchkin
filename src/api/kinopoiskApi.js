@@ -33,30 +33,6 @@ export async function kinopoiskGet(resource, params = {}) {
 }
 
 /**
- * Получить список фильмов по фильтрам
- * @param {object} filters - параметры фильтрации (например, { year: 2023, 'genres.name': 'криминал' })
- */
-export function getMovies(filters = {}) {
-  return kinopoiskGet("movie", filters);
-}
-
-/**
- * Получить фильм по ID
- * @param {string|number} id - ID фильма
- */
-export function getMovieById(id) {
-  return kinopoiskGet(`movie/${id}`);
-}
-
-/**
- * Получить массив фильмов по массиву id
- * @param {Array<string|number>} ids - массив id фильмов
- */
-export async function getMoviesByIds(ids) {
-  return Promise.all(ids.map(getMovieById));
-}
-
-/**
  * Поиск фильмов по названию
  * @param {string} query - поисковый запрос
  * @param {number} [page=1] - страница
@@ -64,74 +40,206 @@ export async function getMoviesByIds(ids) {
 export function searchMovies(query, page = 1, limit = 9) {
   return kinopoiskGet("movie/search", { query, page, limit });
 }
-
 /**
- * Получить случайные фильмы с поддержкой фильтров
- * @param {object} params - дополнительные параметры (например, { id: '!250', year: '2020-2024' })
- * @returns {Promise<object>}
- */
-export function getRandomMovies(params = {}) {
-  return kinopoiskGet("movie/random", {
-    year: "2020-2024",
-    "rating.kp": "8-10",
-    ...params,
-  });
-}
-/**
- * Поиск фильмов по фильтрам: жанр, страна, рейтинг, год выпуска
+ * Универсальный поиск фильмов по фильтрам
  * @param {object} filters - { genre, country, rating, year, page, limit }
  * @returns {Promise<object>}
  */
-export function searchMoviesByFilters({ genre, country, rating, year, page = 1, limit = 9 }) {
-  const params = {};
-  if (genre) params["genres.name"] = genre;
-  if (country) params["countries.name"] = country;
-  if (rating) params["rating.kp"] = rating;
-  if (year) params["year"] = year;
-  params.page = page;
-  params.limit = limit;
-  return getMovies(params);
+export function universalMovieSearch({
+  genre,
+  country,
+  rating,
+  year,
+  page = 1,
+  limit = 9,
+  sortField,
+  signal,
+}) {
+  const params = {
+    page,
+    limit,
+    selectFields: [
+      "id",
+      "name",
+      "alternativeName",
+      "poster",
+      "genres",
+      "countries",
+      "rating",
+      "year",
+    ],
+    notNullFields: "poster.url",
+    type: ["movie", "cartoon"], // <--- добавлено!
+  };
+  if (genre && genre !== "") params["genres.name"] = genre;
+  if (country && country !== "") params["countries.name"] = country;
+  if (rating && rating !== "") {
+    params["rating.kp"] = rating;
+  } else {
+    params["rating.kp"] = "1-10";
+  }
+  if (year !== "" && year !== "2024" && year !== 2024) params["year"] = year;
+  if (sortField) params["sortField"] = sortField;
+  if (signal) params["signal"] = signal;
+
+  return kinopoiskGet("movie", params);
 }
 
-/**
- * Получить список жанров
- */
-function kinopoiskGetV1(resource, params = {}) {
-  const url = new URL(`${API_V1_URL}/${resource}`);
-  Object.entries(params).forEach(([key, value]) => {
-    if (Array.isArray(value)) {
-      value.forEach((val) => url.searchParams.append(key, val));
-    } else {
-      url.searchParams.append(key, value);
+export function getSixMovies() {
+  return fetch(
+    "https://api.kinopoisk.dev/v1.4/movie?page=1&limit=6&notNullFields=poster.url&notNullFields=rating.kp&notNullFields=name&rating.kp=%210",
+    {
+      headers: { "X-API-KEY": API_KEY },
     }
-  });
-  return fetch(url.toString(), {
-    headers: {
-      "X-API-KEY": API_KEY,
-    },
-  }).then(res => {
-    if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
-    return res.json();
-  });
+  )
+    .then((res) => {
+      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
+      return res.json();
+    })
+    .then((data) => {
+      // Перемешать массив фильмов для "рандома"
+      if (Array.isArray(data.docs)) {
+        for (let i = data.docs.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [data.docs[i], data.docs[j]] = [data.docs[j], data.docs[i]];
+        }
+        return data.docs;
+      }
+      return [];
+    });
 }
 
+export function getNineMovies() {
+  return fetch(
+    "https://api.kinopoisk.dev/v1.4/movie?page=1&limit=9&type=movie&type=cartoon&notNullFields=poster.url&notNullFields=rating.kp&notNullFields=name&rating.kp=%210",
+    {
+      headers: { "X-API-KEY": API_KEY },
+    }
+  )
+    .then((res) => {
+      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
+      return res.json();
+    })
+    .then((data) => {
+      if (Array.isArray(data.docs)) {
+        for (let i = data.docs.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [data.docs[i], data.docs[j]] = [data.docs[j], data.docs[i]];
+        }
+        return data.docs;
+      }
+      return [];
+    });
+}
+export function getNineSeries() {
+  return fetch(
+    "https://api.kinopoisk.dev/v1.4/movie?page=1&limit=9&type=animated-series&type=anime&type=tv-series&notNullFields=poster.url&notNullFields=rating.kp&notNullFields=name&rating.kp=%210",
+    {
+      headers: { "X-API-KEY": API_KEY },
+    }
+  )
+    .then((res) => {
+      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
+      return res.json();
+    })
+    .then((data) => {
+      if (Array.isArray(data.docs)) {
+        for (let i = data.docs.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [data.docs[i], data.docs[j]] = [data.docs[j], data.docs[i]];
+        }
+        return data.docs;
+      }
+      return [];
+    });
+}
+export function universalSeriesSearch({
+  genre,
+  country,
+  rating,
+  year,
+  page = 1,
+  limit = 9,
+  sortField,
+  signal,
+}) {
+  const params = {
+    page,
+    limit,
+    selectFields: [
+      "id",
+      "name",
+      "alternativeName",
+      "poster",
+      "genres",
+      "countries",
+      "rating",
+      "year",
+    ],
+    notNullFields: "poster.url",
+    type: ["animated-series", "tv-series", "anime"], // только сериалы!
+  };
+  if (genre && genre !== "") params["genres.name"] = genre;
+  if (country && country !== "") params["countries.name"] = country;
+  if (rating && rating !== "") {
+    params["rating.kp"] = rating;
+  } else {
+    params["rating.kp"] = "1-10";
+  }
+  if (year !== "" && year !== "2024" && year !== 2024) params["year"] = year;
+  if (sortField) params["sortField"] = sortField;
+  if (signal) params["signal"] = signal;
+
+  return kinopoiskGet("movie", params);
+}
 export function getGenres() {
-  return kinopoiskGetV1("movie/possible-values-by-field", {
-    field: "genres.name",
-  });
+  const cacheKey = "genresCache";
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) {
+    try {
+      return Promise.resolve(JSON.parse(cached));
+    } catch {
+      // Если вдруг localStorage битый — игнорируем и делаем запрос
+    }
+  }
+  return fetch(
+    `${API_V1_URL}/movie/possible-values-by-field?field=genres.name`,
+    {
+      headers: { "X-API-KEY": API_KEY },
+    }
+  )
+    .then((res) => {
+      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
+      return res.json();
+    })
+    .then((data) => {
+      localStorage.setItem(cacheKey, JSON.stringify(data));
+      return data;
+    });
 }
+
 export function getCountries() {
-  return kinopoiskGetV1("movie/possible-values-by-field", {
-    field: "countries.name",
-  });
-}
-export function getRatings() {
-  return kinopoiskGetV1("movie/possible-values-by-field", {
-    field: "rating.kp",
-  });
-}
-export function getYears() {
-  return kinopoiskGetV1("movie/possible-values-by-field", {
-    field: "year",
-  });
+  const cacheKey = "countriesCache";
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) {
+    try {
+      return Promise.resolve(JSON.parse(cached));
+    } catch {
+      // Если вдруг localStorage битый — игнорируем и делаем запрос
+    }
+  }
+  return fetch(
+    `${API_V1_URL}/movie/possible-values-by-field?field=countries.name`,
+    {
+      headers: { "X-API-KEY": API_KEY },
+    }
+  )
+    .then((res) => {
+      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
+      return res.json();
+    })
+    .then((data) => {
+      localStorage.setItem(cacheKey, JSON.stringify(data));
+      return data;
+    });
 }
