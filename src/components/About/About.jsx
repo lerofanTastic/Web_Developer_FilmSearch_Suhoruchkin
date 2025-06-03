@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./About.module.css";
-import { topAnime } from "../../constants/topAnime.js";
 import { Card } from "../Card/Card.jsx";
 import { useParams } from "react-router-dom";
 import { VideoPlayer } from "../VideoPlayer/VideoPlayer.jsx";
