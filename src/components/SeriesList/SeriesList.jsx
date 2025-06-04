@@ -4,6 +4,7 @@ import styles from "../MovieList/MovieList.module.css";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/Theme/themeContext";
 import { getNineSeries, universalSeriesSearch } from "../../api/kinopoiskApi";
+import { Loading } from "../Loading/Loading";
 
 export const SeriesList = ({ genre, country, rating, year }) => {
   const { theme } = useTheme();
@@ -146,7 +147,7 @@ export const SeriesList = ({ genre, country, rating, year }) => {
         </div>
       </div>
       <div className={styles.mainCards}>
-        {loading && <div>Загрузка...</div>}
+        {loading && <Loading />}
         {isMobile && currentIndex > 0 && (
           <img
             className={`${styles.arrow} ${styles.left} ${styles[theme]}`}

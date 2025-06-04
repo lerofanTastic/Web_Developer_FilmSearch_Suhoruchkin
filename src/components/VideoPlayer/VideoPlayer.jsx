@@ -8,6 +8,17 @@ export const VideoPlayer = ({ trailer }) => {
   const isYouTube = trailer && trailer.includes("youtube.com");
   const { theme } = useTheme();
 
+  if (!trailer || trailer.length === 0) {
+    return (
+      <div className={styles.noVideoContainer}>
+        <div className={`${styles.trailerHeader} ${styles[theme]}`}>
+          <h1>Трейлер</h1>
+          <p>Трейлер отсутствует</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.videoContainer}>
       <div className={`${styles.trailerHeader} ${styles[theme]}`}>
@@ -17,8 +28,6 @@ export const VideoPlayer = ({ trailer }) => {
         <iframe
           src={trailer}
           title="Трейлер"
-          width="560"
-          height="315"
           frameBorder="0"
           allow="autoplay; encrypted-media"
           allowFullScreen

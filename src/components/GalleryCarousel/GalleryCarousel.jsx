@@ -59,7 +59,9 @@ export const GalleryCarousel = ({ src }) => {
                 />
               ))
           ) : (
-            <p>Изображения не найдены</p>
+            <div className={`${styles.noImages} ${styles[theme]}`}>
+              <p>Изображения не найдены</p>
+            </div>
           )}
         </div>
       </div>

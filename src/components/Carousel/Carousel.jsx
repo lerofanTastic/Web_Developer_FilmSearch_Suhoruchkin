@@ -4,6 +4,7 @@ import styles from "./Carousel.module.css";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/Theme/themeContext";
 import { getSixMovies } from "../../api/kinopoiskApi";
+import { Loading } from "../Loading/Loading";
 
 export const Carousel = () => {
   const { theme } = useTheme();
@@ -66,7 +67,7 @@ export const Carousel = () => {
     }
   }
 
-  if (loading) return <div>Загрузка...</div>;
+  if (loading) return <Loading />;
 
   return (
     <div className={styles.main}>

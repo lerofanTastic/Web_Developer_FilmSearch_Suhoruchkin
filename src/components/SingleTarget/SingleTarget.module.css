@@ -4,9 +4,9 @@
   align-items: center;
   /* gap: 50px; */
 }
-.about{
+.about {
   display: flex;
-
+  margin-bottom: 4.32vw;
 }
 .single.dark {
   background-color: #1d1d1d;
@@ -17,24 +17,28 @@
 .trailer {
   display: flex;
   flex-direction: column;
-  margin-top: 4.32vw;
-  
+  margin-bottom: 4.32vw;
 }
-
 .gallery {
-  margin-top: 5.1vw;
+  margin-bottom: 4.32vw;
 }
-
-
+.reviews {
+  margin-bottom: 4.32vw;
+}
 @media (max-width: 720px) {
-  
-   .trailer{
-    margin-bottom: 15vw;
-   }
-  .gallery {
-    margin-bottom: 21.38vw;
+  .single {
+    align-items: normal;
   }
-  
+  .trailer {
+    margin-bottom: 30vw;
+  }
+  .gallery {
+    margin-bottom: 30vw;
+  }
+  .reviews {
+    margin-bottom: 30vw;
+  }
+
   .galleryTop {
     align-items: center;
     display: flex;

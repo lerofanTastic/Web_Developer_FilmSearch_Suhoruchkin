@@ -14,7 +14,7 @@
 .poster {
   margin-top: 7.23vw;
   margin-right: 6.61vw;
-  margin-left:  15vw;
+  margin-left: 15vw;
   /* width: 50%; */
 }
 .bigCard {
@@ -89,8 +89,6 @@
   color: black;
 }
 
-
-
 .mainHeaderMob {
   position: absolute;
   visibility: hidden;
@@ -102,7 +100,6 @@
 .mainHeaderMob.light {
   color: black;
 }
-
 
 @media (max-width: 720px) {
   .main {
@@ -125,12 +122,15 @@
     visibility: visible;
     font-family: Inter;
     font-weight: 600;
-    font-size: 10vw;
-    line-height: 200%;
+    font-size: 7vw;
+    line-height: 1.2; /* уменьшаем межстрочный интервал */
     letter-spacing: 0%;
     color: white;
     margin-left: 8.33vw;
     margin-top: 10vw;
+    word-wrap: break-word; /* добавляем переносы слов */
+    hyphens: auto; /* добавляем переносы слов с дефисами */
+    overflow-wrap: break-word;
   }
   .description {
     margin-left: 8.33vw;
@@ -154,7 +154,7 @@
   .typeFirst {
     font-family: Inter;
     font-weight: 500;
-    font-size: 5vw;
+    font-size: 3vw;
     line-height: 135%;
     letter-spacing: 0%;
     width: 90vw;
@@ -162,13 +162,12 @@
   .typeSecond {
     font-family: Inter;
     font-weight: 600;
-    font-size: 5.55vw;
+    font-size: 3vw;
     line-height: 135%;
     letter-spacing: 0%;
     width: 90vw;
   }
-  
-  
+
   .reviews h1 {
     margin-left: 8.05vw;
     font-family: Inter;

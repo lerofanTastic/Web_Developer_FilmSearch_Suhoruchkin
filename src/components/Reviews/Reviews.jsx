@@ -6,7 +6,12 @@ export const Reviews = ({ reviews = [] }) => {
   const { theme, isMobile } = useTheme();
 
   if (!reviews || reviews.length === 0) {
-    return <div>Рецензии не найдены</div>;
+    return (
+      <div className={`${styles.reviews} ${styles[theme]}`}>
+        <h1>Рецензии зрителей</h1>
+        <p>Нет рецензий</p>
+      </div>
+    );
   }
 
   // Определяем путь к звезде

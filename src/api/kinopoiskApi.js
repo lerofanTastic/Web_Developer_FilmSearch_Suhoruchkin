@@ -78,7 +78,7 @@ export function universalMovieSearch({
   } else {
     params["rating.kp"] = "1-10";
   }
-  if (year !== "" && year !== "2024" && year !== 2024) params["year"] = year;
+  if (year !== "") params["year"] = year;
   if (sortField) params["sortField"] = sortField;
   if (signal) params["signal"] = signal;
 
@@ -154,10 +154,10 @@ export function getNineSeries() {
     });
 }
 export function universalSeriesSearch({
-  genre,
-  country,
-  rating,
-  year,
+  genresArr = [],
+  countriesArr = [],
+  ratingArr = [],
+  yearArr = [],
   page = 1,
   limit = 9,
   sortField,
@@ -177,21 +177,52 @@ export function universalSeriesSearch({
       "year",
     ],
     notNullFields: "poster.url",
-    type: ["animated-series", "tv-series", "anime"], // только сериалы!
+    type: ["animated-series", "tv-series", "anime"],
   };
-  if (genre && genre !== "") params["genres.name"] = genre;
-  if (country && country !== "") params["countries.name"] = country;
-  if (rating && rating !== "") {
-    params["rating.kp"] = rating;
-  } else {
-    params["rating.kp"] = "1-10";
-  }
-  if (year !== "" && year !== "2024" && year !== 2024) params["year"] = year;
+
+  // Передаём только первый выбранный вариант каждого фильтра
+  if (genresArr.length > 0) params["genres.name"] = genresArr[0];
+  if (countriesArr.length > 0) params["countries.name"] = countriesArr[0];
+  if (ratingArr.length > 0) params["rating.kp"] = ratingArr[0];
+  if (yearArr.length > 0) params["year"] = yearArr[0];
   if (sortField) params["sortField"] = sortField;
   if (signal) params["signal"] = signal;
 
-  return kinopoiskGet("movie", params);
+  return kinopoiskGet("movie", params).then(data => {
+    // Строгая фильтрация по всем выбранным жанрам
+    if (genresArr.length > 1 && Array.isArray(data.docs)) {
+      data.docs = data.docs.filter(movie =>
+        genresArr.every(g =>
+          movie.genres && movie.genres.some(genreObj => genreObj.name === g)
+        )
+      );
+    }
+    // Строгая фильтрация по всем выбранным странам
+    if (countriesArr.length > 1 && Array.isArray(data.docs)) {
+      data.docs = data.docs.filter(movie =>
+        countriesArr.every(c =>
+          movie.countries && movie.countries.some(countryObj => countryObj.name === c)
+        )
+      );
+    }
+    // Строгая фильтрация по всем выбранным рейтингам
+    if (ratingArr.length > 1 && Array.isArray(data.docs)) {
+      data.docs = data.docs.filter(movie =>
+        ratingArr.every(r =>
+          movie.rating && movie.rating.kp && r == Math.floor(movie.rating.kp)
+        )
+      );
+    }
+    // Строгая фильтрация по всем выбранным годам
+    if (yearArr.length > 1 && Array.isArray(data.docs)) {
+      data.docs = data.docs.filter(movie =>
+        yearArr.every(y => movie.year === y)
+      );
+    }
+    return data;
+  });
 }
+
 export function getGenres() {
   const cacheKey = "genresCache";
   const cached = localStorage.getItem(cacheKey);

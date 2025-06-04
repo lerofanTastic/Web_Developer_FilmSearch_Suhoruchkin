@@ -1,14 +1,11 @@
 .reviews {
-  /* width: 66.66vw; */
-  margin-top: 5.52vw;
-  /* margin-bottom: 5.52vw; */
   display: flex;
-  /* flex-wrap: wrap; */
   flex-direction: column;
-  margin-bottom: 7.76vw;
+  position: relative;
+  width: 66.66vw;
+  margin: 0 auto;
 }
 .reviews h1 {
-  margin-bottom: 3.9vw;
   font-family: Inter;
   font-weight: 600;
   font-size: 1.875vw;
@@ -19,6 +16,19 @@
   color: white;
 }
 .reviews.light h1 {
+  color: black;
+}
+.reviews p {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 1.875vw;
+  line-height: 135%;
+  letter-spacing: 0%;
+}
+.reviews.dark p {
+  color: white;
+}
+.reviews.light p {
   color: black;
 }
 .reviewsContainer {
@@ -91,31 +101,40 @@
 }
 
 @media (max-width: 720px) {
+  .reviewsContainer{
+    flex-direction: column;
+  }
   .reviews {
+    width: 85vw;
+    /* margin: 0; */
+    margin-bottom: 10vw;
+    /* margin-left: 8.05vw; */
   }
   .reviews h1 {
+    margin: 0;
     font-family: Inter;
     font-weight: 600;
     font-size: 7.77vw;
     line-height: 120%;
     letter-spacing: 0%;
-    margin: 0;
-    margin-left: 8.05vw;
-    margin-bottom: 6.11vw;
-    /* margin-top: 7; */
+    margin-bottom: 10vw;
   }
-  .reviewsContainer {
-    flex-direction: column;
-    margin-left: 8.05vw;
+  .reviews p {
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 5vw;
+    line-height: 135%;
+    letter-spacing: 0%;
   }
+
   .reviewBox {
     width: 85.55vw;
     height: auto;
     margin-bottom: 10vw;
   }
   .reviewBox.dark {
-  background-color: white;
-}
+    background-color: white;
+  }
 
   .reviewBox h2 {
     margin-top: 7.77vw;
@@ -128,8 +147,8 @@
     letter-spacing: 0%;
   }
   .reviewBox.dark h2 {
-  color: black;
-}
+    color: black;
+  }
 
   .reviewBox p {
     margin-left: 6.66vw;
@@ -140,8 +159,8 @@
     letter-spacing: 0%;
   }
   .reviewBox.dark p {
-  color: black;
-}
+    color: black;
+  }
 
   .whiteStarContainer {
     margin: 0;

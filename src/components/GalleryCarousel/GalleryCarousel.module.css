@@ -80,7 +80,34 @@
 .galleryHeader.light h1 {
   color: black;
 }
+.noImages {
+  display: flex;
+  margin: 0 auto;
+}
+.noImages p {
+  margin: 0;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 1.875vw;
+  line-height: 135%;
+  letter-spacing: 0%;
+}
+.noImages.dark p{
+  color: white;
+}
+.noImages.light p{
+  color: black;
+}
 @media (max-width: 720px) {
+
+.noImages p {
+  margin: 0;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 5vw;
+  line-height: 135%;
+  letter-spacing: 0%;
+}
   .galleryHeader h1 {
     margin-left: 8.05vw;
     /* margin-right: 27.77vw; */
@@ -91,14 +118,13 @@
     letter-spacing: 0%;
     margin-bottom: 10vw;
   }
-   .galleryContainer {
+  .galleryContainer {
     width: 100vw;
-    overflow-x: hidden; 
+    overflow-x: hidden;
   }
   .galleryCarousel {
-    
     margin-left: 8.05vw;
-    overflow-x: hidden; 
+    overflow-x: hidden;
     /* width: 100vw; */
     display: flex;
     align-items: center;
@@ -117,32 +143,32 @@
   }
   .mobileArrows {
     width: 20vw;
-  display: flex;
-  gap: 0;
-  align-items: center;
-  /* margin-left: auto; */
-  margin: 0;
-}
-.galleryHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.arrowLeft {
-  position: relative;
-  width: 2.04vw;
-  height: 2.08vw;
-  cursor: pointer;
-  z-index: 10;
-  transition: 0.2s;
-}
+    display: flex;
+    gap: 0;
+    align-items: center;
+    /* margin-left: auto; */
+    margin: 0;
+  }
+  .galleryHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .arrowLeft {
+    position: relative;
+    width: 2.04vw;
+    height: 2.08vw;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.2s;
+  }
 
-.arrowRight {
-  position: relative;
-  width: 2.04vw;
-  height: 2.08vw;
-  cursor: pointer;
-  z-index: 10;
-  transition: 0.2s;
-}
+  .arrowRight {
+    position: relative;
+    width: 2.04vw;
+    height: 2.08vw;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.2s;
+  }
 }

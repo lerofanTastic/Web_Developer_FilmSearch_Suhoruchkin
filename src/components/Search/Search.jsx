@@ -3,6 +3,7 @@ import styles from "./Search.module.css";
 import { searchMovies } from "../../api/kinopoiskApi";
 import { Card } from "../Card/Card";
 import { Link } from "react-router-dom";
+import { Loading } from "../Loading/Loading";
 
 export const Search = () => {
   const [query, setQuery] = useState("");
@@ -70,10 +71,11 @@ export const Search = () => {
           Найти
         </button>
       </form>
-      {loading && <div>Загрузка...</div>}
+      
       {error && <div style={{ color: "red" }}>{error}</div>}
       {showResults && results.length > 0 && (
         <div className={styles.results} ref={resultsRef}>
+          {loading && <Loading />}
           {results.map((movie) => (
             <div className={styles.resultItem} key={movie.id || movie._id}>
               <Link to={`/movie/${movie.id}`} key={movie.id}>

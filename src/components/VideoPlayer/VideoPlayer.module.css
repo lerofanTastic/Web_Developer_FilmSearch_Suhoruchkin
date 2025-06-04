@@ -1,12 +1,19 @@
+.noVideoContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 66.66vw;
+  margin: 0 auto;
+}
 .videoContainer {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
   position: relative;
   width: 66.66vw;
   height: 37.5vw;
   margin: 0 auto;
 }
-.trailerHeader h1{
+.trailerHeader h1 {
   font-family: Inter;
   font-weight: 600;
   font-size: 1.875vw;
@@ -20,6 +27,19 @@
 .trailerHeader.light h1 {
   color: black;
 }
+.trailerHeader p {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 1.875vw;
+  line-height: 135%;
+  letter-spacing: 0%;
+}
+.trailerHeader.dark p {
+  color: white;
+}
+.trailerHeader.light p {
+  color: black;
+}
 .video {
   width: 100%;
   height: 37.5vw;
@@ -28,7 +48,7 @@
 }
 
 /* Контейнер для кастомных контролов, расположенный поверх видео */
-.customControls{
+.customControls {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -53,12 +73,12 @@
   background: none; /* Убираем фон */
   background-color: transparent; /* border-radius: 4px; */
 }
-.controlBottom{
-    width: 66.66vw;
-    margin-top: 2.6vw;
-    justify-content: center;
-    /* margin: 0 auto; */
-    display: flex;
+.controlBottom {
+  width: 66.66vw;
+  margin-top: 2.6vw;
+  justify-content: center;
+  /* margin: 0 auto; */
+  display: flex;
 }
 
 .icon {
@@ -95,12 +115,24 @@
     line-height: 120%;
     letter-spacing: 0%;
   }
-  .videoContainer{
-    margin-bottom: 21.38vw;
+  .trailerHeader p {
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 5vw;
+    line-height: 135%;
+    letter-spacing: 0%;
+  }
+  .videoContainer {
+    align-items: center;
+    width: 80vw; /* увеличиваем ширину контейнера видео до 80% viewport */
+  height: 60vh;
+  }
+  .noVideoContainer {
     align-items: center;
   }
-  .video{
-    width: 83.33vw;
-    height: 46.94vw;
+  .video {
+    width: 100%; /* увеличиваем ширину видео до 100% */
+    height: 100vh; /* увеличиваем высоту видео до 100% viewport */
+    object-fit: cover;
   }
 }
