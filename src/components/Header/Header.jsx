@@ -25,36 +25,45 @@ export const Header = () => {
               id="burgerCheckbox"
               className={`${styles.burgerCheckbox} ${styles[theme]}`}
             />
-            <label htmlFor="burgerCheckbox" className={`${styles.burger} ${styles[theme]}`}></label>
+            <label
+              htmlFor="burgerCheckbox"
+              className={`${styles.burger} ${styles[theme]}`}
+            ></label>
             <ul className={`${styles.menuList} ${styles[theme]}`}>
-              <li className={styles.list}>
-                <NavLink
-                  to="/movie"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link-active" : "nav-link"
-                  }
-                >
-                  <div className={`${styles.menuItem} ${styles[theme]}`}>Фильмы</div>
-                </NavLink>
-              </li>
-              <li className={styles.list}>
-                <NavLink
-                  to="/series"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link-active" : "nav-link"
-                  }
-                >
-                  <div className={`${styles.menuItem} ${styles[theme]}`}>Сериалы</div>
-                </NavLink>
-              </li>
-              <li className={styles.listTheme}>
-                <p> {theme === "dark" ? "Светлая тема" : "Тёмная тема"}</p>
-                <input
-                  type="checkbox"
-                  onChange={toggleTheme}
-                  className={styles.themeCheckbox}
-                ></input>
-              </li>
+              <div className={styles.menuListWrapper}>
+                <li className={styles.list}>
+                  <NavLink
+                    to="/movie"
+                    className={({ isActive }) =>
+                      isActive ? "nav-link-active" : "nav-link"
+                    }
+                  >
+                    <div className={`${styles.menuItem} ${styles[theme]}`}>
+                      <p>Фильмы</p>
+                    </div>
+                  </NavLink>
+                </li>
+                <li className={styles.list}>
+                  <NavLink
+                    to="/series"
+                    className={({ isActive }) =>
+                      isActive ? "nav-link-active" : "nav-link"
+                    }
+                  >
+                    <div className={`${styles.menuItem} ${styles[theme]}`}>
+                      <p>Сериалы</p>
+                    </div>
+                  </NavLink>
+                </li>
+                <li className={styles.listTheme}>
+                  <p> {theme === "dark" ? "Светлая тема" : "Тёмная тема"}</p>
+                  <input
+                    type="checkbox"
+                    onChange={toggleTheme}
+                    className={styles.themeCheckbox}
+                  ></input>
+                </li>
+              </div>
             </ul>
           </nav>
         </div>
