@@ -31,14 +31,10 @@ export const Search = () => {
     }
   };
 
-  // Скрытие результатов по клику вне блока
   useEffect(() => {
     if (!showResults) return;
     const handleClickOutside = (event) => {
-      if (
-        resultsRef.current &&
-        !resultsRef.current.contains(event.target)
-      ) {
+      if (resultsRef.current && !resultsRef.current.contains(event.target)) {
         setShowResults(false);
       }
     };
@@ -71,7 +67,7 @@ export const Search = () => {
           Найти
         </button>
       </form>
-      
+
       {error && <div style={{ color: "red" }}>{error}</div>}
       {showResults && results.length > 0 && (
         <div className={styles.results} ref={resultsRef}>

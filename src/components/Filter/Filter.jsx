@@ -46,14 +46,12 @@ export const Filter = ({
   const handleBlur = (name) =>
     setOpenSelect((prev) => ({ ...prev, [name]: false }));
 
-  // Генерация массива рейтингов с шагом 0.1
   const ratingRanges = [];
   ratingRanges.push({ label: "от 0 до 1", value: "0-1" });
   for (let i = 1; i < 10; i++) {
     ratingRanges.push({ label: `от ${i} до ${i + 1}`, value: `${i}-${i + 1}` });
   }
 
-  // Генерация массива годов
   const years = [];
   for (let y = 2024; y >= 1874; y--) {
     years.push(y);
@@ -65,7 +63,6 @@ export const Filter = ({
         <h1>{header}</h1>
       </div>
       <div className={styles.filter}>
-        {/* Жанр */}
         <form
           className={`${styles.category} ${styles[theme]}`}
           id="genreFilter"
@@ -93,7 +90,6 @@ export const Filter = ({
             ></span>
           </div>
         </form>
-        {/* Рейтинг */}
         <form
           className={`${styles.category} ${styles[theme]}`}
           id="ratingFilter"
@@ -121,7 +117,6 @@ export const Filter = ({
             ></span>
           </div>
         </form>
-        {/* Страна */}
         <form
           className={`${styles.category} ${styles[theme]}`}
           id="countryFilter"
@@ -149,7 +144,6 @@ export const Filter = ({
             ></span>
           </div>
         </form>
-        {/* Год */}
         <form className={`${styles.category} ${styles[theme]}`} id="yearFilter">
           <label htmlFor="year">Год выпуска</label>
           <div className={styles.selectWrapper}>

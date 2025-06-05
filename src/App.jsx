@@ -6,7 +6,7 @@ import { Movie } from "./components/Movie/Movie";
 import { Series } from "./components/Series/Series";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { SingleTarget } from "./components/SingleTarget/SingleTarget";
-import { ThemeProvider, useTheme } from "./context/Theme/themeContext";
+import { ThemeProvider } from "./context/Theme/themeContext";
 import { Thanks } from "./components/Thanks/Thanks";
 
 function App() {

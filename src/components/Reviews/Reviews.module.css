@@ -5,6 +5,7 @@
   width: 66.66vw;
   margin: 0 auto;
 }
+
 .reviews h1 {
   font-family: Inter;
   font-weight: 600;
@@ -12,12 +13,15 @@
   line-height: 135%;
   letter-spacing: 0%;
 }
+
 .reviews.dark h1 {
   color: white;
 }
+
 .reviews.light h1 {
   color: black;
 }
+
 .reviews p {
   font-family: Inter;
   font-weight: 400;
@@ -25,30 +29,36 @@
   line-height: 135%;
   letter-spacing: 0%;
 }
+
 .reviews.dark p {
   color: white;
 }
+
 .reviews.light p {
   color: black;
 }
+
 .reviewsContainer {
   display: flex;
   flex-direction: row;
   gap: 1.19vw;
 }
+
 .reviewBox {
   display: flex;
   flex-direction: column;
-
   width: 32.65vw;
   height: auto;
 }
+
 .reviewBox.dark {
   background-color: black;
 }
+
 .reviewBox.light {
   background-color: white;
 }
+
 .reviewBox h2 {
   margin-top: 2.6vw;
   margin-left: 2.39vw;
@@ -58,29 +68,34 @@
   line-height: 135%;
   letter-spacing: 0%;
 }
+
 .reviewBox.dark h2 {
   color: white;
 }
+
 .reviewBox.light h2 {
   color: black;
 }
+
 .reviewBox p {
   font-family: Inter;
   font-weight: 400;
   font-size: 1.04vw;
   line-height: 135%;
   letter-spacing: 0%;
-
   margin-top: 2.5vw;
   margin-left: 2.39vw;
   margin-right: 3.17vw;
 }
+
 .reviewBox.dark p {
   color: white;
 }
+
 .reviewBox.light p {
   color: black;
 }
+
 .whiteStarContainer {
   margin-top: 0.67vw;
   margin-left: 2.13vw;
@@ -88,6 +103,7 @@
   display: flex;
   flex-direction: row;
 }
+
 .blackStarContainer {
   margin-top: 0.67vw;
   margin-left: 2.13vw;
@@ -95,21 +111,22 @@
   display: flex;
   flex-direction: row;
 }
+
 .starWrapper {
   width: 1.77vw;
   height: 1.77vw;
 }
 
 @media (max-width: 720px) {
-  .reviewsContainer{
+  .reviewsContainer {
     flex-direction: column;
   }
+
   .reviews {
     width: 85vw;
-    /* margin: 0; */
     margin-bottom: 10vw;
-    /* margin-left: 8.05vw; */
   }
+
   .reviews h1 {
     margin: 0;
     font-family: Inter;
@@ -119,6 +136,7 @@
     letter-spacing: 0%;
     margin-bottom: 10vw;
   }
+
   .reviews p {
     font-family: Inter;
     font-weight: 400;
@@ -132,6 +150,7 @@
     height: auto;
     margin-bottom: 10vw;
   }
+
   .reviewBox.dark {
     background-color: white;
   }
@@ -146,6 +165,7 @@
     line-height: 135%;
     letter-spacing: 0%;
   }
+
   .reviewBox.dark h2 {
     color: black;
   }
@@ -158,6 +178,7 @@
     line-height: 135%;
     letter-spacing: 0%;
   }
+
   .reviewBox.dark p {
     color: black;
   }
@@ -170,6 +191,7 @@
     display: flex;
     flex-direction: row;
   }
+
   .blackStarContainer {
     margin: 0;
     margin-left: 6.66vw;
@@ -178,6 +200,7 @@
     display: flex;
     flex-direction: row;
   }
+  
   .starWrapper {
     width: 6.11vw;
     height: 6.11vw;

@@ -3,22 +3,27 @@
   flex-direction: column;
   width: 22.81vw;
 }
+
 .mainLeft.dark {
   background-color: black;
 }
+
 .mainLeft.light {
   background-color: white;
 }
+
 .filterHeader {
   position: absolute;
   visibility: hidden;
 }
+
 .filter {
   display: flex;
   flex-direction: column;
   margin-top: 5.83vw;
   margin-left: 4.68vw;
 }
+
 .category {
   display: flex;
   flex-direction: column;
@@ -27,23 +32,25 @@
   gap: 1.3vw;
   margin-bottom: 2.6vw;
 }
+
 .category label {
   margin: 0;
-
   font-family: Inter;
   font-weight: 600;
   font-size: 1.66vw;
   line-height: 100%;
   letter-spacing: 0%;
   margin-left: 1.19vw;
-  /* margin-bottom: 50px; */
 }
+
 .category.dark label {
   color: white;
 }
+
 .category.light label {
   color: black;
 }
+
 .category select {
   width: 14.42vw;
   height: 3.54vw;
@@ -62,16 +69,20 @@
   -moz-appearance: none;
   background: none;
 }
+
 .category.dark select {
   background: #1d1d1d;
 }
+
 .category.light select {
   background: white;
 }
+
 .selectWrapper {
   position: relative;
   display: inline-block;
 }
+
 .arrow {
   position: absolute;
   right: 2em;
@@ -83,23 +94,25 @@
   transition: transform 0.2s;
   background: url("/src/assets/svg/filter-arrow.svg") center/contain no-repeat;
 }
+
 .arrowOpen {
   transform: translateY(-50%) rotate(180deg);
 }
+
 @media (max-width: 720px) {
   .mainLeft {
-    /* width: 720px; */
     width: 100%;
     height: 271.94vw;
-    /* align-items: center; */
     background-color: #1d1d1d;
   }
+
   .category {
     width: 83.33vw;
     height: 36.66vw;
     align-items: center;
     margin-bottom: 13.88vw;
   }
+
   .category select {
     background: black;
     padding-left: 10vw;
@@ -113,6 +126,7 @@
     border-radius: 2.77vw;
     margin-left: 8.05vw;
   }
+
   .category label {
     align-self: normal;
     margin-left: 14.44vw;
@@ -123,6 +137,7 @@
     letter-spacing: 0%;
     margin-bottom: 9.72vw;
   }
+
   .filterHeader {
     position: relative;
     visibility: visible;
@@ -130,6 +145,7 @@
     margin-left: 8.05vw;
     margin-bottom: 14.16vw;
   }
+
   .filterHeader h1 {
     font-family: Inter;
     font-weight: 600;
@@ -138,22 +154,24 @@
     letter-spacing: 0%;
     color: white;
   }
+
   .filterHeader.dark h1 {
     color: white;
   }
+
   .filterHeader.light h1 {
     color: black;
   }
+
   .filter {
     margin: 0;
     width: 100%;
-    /* margin-left: 60px; */
-    /* align-items: center; */
-    /* margin-top: 130px; */
   }
+
   .mainLeft.dark {
     background-color: #1d1d1d;
   }
+  
   .category.dark select {
     background: black;
   }

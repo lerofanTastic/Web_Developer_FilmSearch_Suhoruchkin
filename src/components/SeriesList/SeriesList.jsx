@@ -96,16 +96,13 @@ export const SeriesList = ({ genre, country, rating, year }) => {
 
   const getPagination = () => {
     const arr = [];
-    // Начальная страница для диапазона
     let start = Math.max(1, page - 2);
-    // Конечная страница для диапазона
     let end = Math.min(pages, page + 2);
 
-    // Если не хватает страниц слева, добавляем справа
     if (page <= 2) {
       end = Math.min(pages, 5);
     }
-    // Если не хватает страниц справа, добавляем слева
+
     if (page >= pages - 1) {
       start = Math.max(1, pages - 4);
     }

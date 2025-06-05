@@ -14,7 +14,6 @@ export const Reviews = ({ reviews = [] }) => {
     );
   }
 
-  // Определяем путь к звезде
   const starSrc =
     isMobile || theme === "light"
       ? "/src/assets/svg/star-black.svg"

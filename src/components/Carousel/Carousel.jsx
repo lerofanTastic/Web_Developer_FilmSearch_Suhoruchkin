@@ -23,15 +23,14 @@ export const Carousel = () => {
     setCurrentIndex(0);
   }, [isMobile]);
 
-  // Загрузка 6 случайных фильмов
   useEffect(() => {
-  setLoading(true);
-  getSixMovies()
-    .then(films => {
-      setMovies(films);
-    })
-    .finally(() => setLoading(false));
-}, []);
+    setLoading(true);
+    getSixMovies()
+      .then((films) => {
+        setMovies(films);
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
   const cardsToShow = isMobile ? 1 : 3;
   const maxIndex = Math.max(0, movies.length - cardsToShow);
@@ -51,7 +50,6 @@ export const Carousel = () => {
     );
   };
 
-  // Формируем массив карточек для отображения
   let visibleCards = [];
   if (movies.length > 0) {
     if (isMobile) {

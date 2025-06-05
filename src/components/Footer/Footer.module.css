@@ -19,29 +19,33 @@
   flex-direction: row;
   gap: 1.04vw;
 }
+
 .footerRightBottom {
   gap: 1.04vw;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+
 .footerRightBottom p {
   color: white;
   font-family: Inter;
   font-weight: 700;
   font-size: 1.35vw;
 }
+
 .svgWrapper {
   height: 1.4vw;
   width: 1.25vw;
   transition: filter 0.001s, fill 0.001s;
   cursor: pointer;
 }
+
 .svgWrapper:hover {
   filter: brightness(0) saturate(100%) invert(16%) sepia(98%) saturate(7473%)
     hue-rotate(265deg) brightness(97%) contrast(101%);
-  /* Это даст фиолетовый оттенок */
 }
+
 @media (max-width: 720px) {
   .footer {
     width: 100%;
@@ -49,6 +53,7 @@
     flex-direction: column-reverse;
     align-items: normal;
   }
+
   .footerLeft {
     margin-left: 5.2vw;
     font-family: Inter;
@@ -57,19 +62,23 @@
     line-height: 125%;
     letter-spacing: 0%;
   }
+
   .footerRight{
     margin-top: 40px;
   }
+
   .footerRightTop {
     gap: 3vw;
     margin-left: 5.2vw;
   }
+
   .footerRightBottom {
     gap: 1.04vw;
     display: flex;
     flex-direction: row;
     align-items: center;
   }
+
   .footerRightBottom p {
     margin-left: 5.2vw;
     font-family: Inter;
@@ -78,6 +87,7 @@
     line-height: 125%;
     letter-spacing: 0%;
   }
+  
   .svgWrapper {
     height: 5.55vw;
     width: 5.55vw;

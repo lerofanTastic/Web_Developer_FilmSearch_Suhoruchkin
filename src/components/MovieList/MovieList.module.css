@@ -1,22 +1,24 @@
 .mainRight {
   width: 100%;
-  /* width: 1482px; */
-
   display: flex;
   flex-direction: column;
 }
+
 .mainRight.dark {
   background: #1d1d1d;
 }
+
 .mainRight.light {
   background: white;
 }
+
 .mainRightTop {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
+
 .mainRightTopHeader {
   margin-top: 5.78vw;
   margin-left: 2.23vw;
@@ -27,31 +29,36 @@
   line-height: 135%;
   letter-spacing: 0%;
 }
+
 .mainRightTopHeader.dark {
   color: white;
 }
+
 .mainRightTopHeader.light {
   color: black;
 }
+
 .pagination {
   display: flex;
   flex-direction: row;
   margin-right: 18.7vw;
   margin-top: 7.23vw;
   gap: 1.3vw;
-
   font-family: Inter;
   font-weight: 600;
   font-size: 1.25vw;
   line-height: 100%;
   letter-spacing: 0%;
 }
+
 .pagination.dark {
   color: white;
 }
+
 .pagination.light {
   color: black;
 }
+
 .pagesRow {
   display: flex;
   gap: 8px;
@@ -63,11 +70,13 @@
   line-height: 100%;
   letter-spacing: 0%;
 }
-.pagesRow.dark{
-color: #7d7d7d;
+
+.pagesRow.dark {
+  color: #7d7d7d;
 }
-.pagesRow.light{
-color: #C0C0C0;
+
+.pagesRow.light {
+  color: #c0c0c0;
 }
 
 .pagesRow button {
@@ -87,11 +96,13 @@ color: #C0C0C0;
   font-weight: bold;
   background: none;
 }
-.activePage.dark{
- color: #ffffff;
+
+.activePage.dark {
+  color: #ffffff;
 }
-.activePage.light{
- color: #000000;
+
+.activePage.light {
+  color: #000000;
 }
 
 .pagesRow span {
@@ -101,6 +112,7 @@ color: #C0C0C0;
   font: inherit;
   padding: 0 8px;
 }
+
 .mainCards {
   display: flex;
   flex-wrap: wrap;
@@ -114,14 +126,14 @@ color: #C0C0C0;
     visibility: hidden;
     position: absolute;
   }
+
   .mainRightTopPages {
     visibility: hidden;
     position: absolute;
   }
+
   .mainCards {
     display: flex;
-    /* flex-wrap: nowrap; */
-    /* overflow: hidden; */
     width: 73.05vw;
     height: 101.94vw;
     justify-content: center;
@@ -130,9 +142,6 @@ color: #C0C0C0;
     margin: 0 auto;
     margin-bottom: 28.88vw;
     position: relative;
-    /* Для плавного смещения карточек */
-    /* transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); */
-    /* will-change: transform; */
   }
 
   .arrow {
@@ -151,23 +160,29 @@ color: #C0C0C0;
     top: 50%;
     right: 77vw;
   }
+
   .arrow.left.dark {
     content: url("/src/assets/svg/left-arrow.svg");
   }
+
   .arrow.right.dark {
     content: url("/src/assets/svg/right-arrow.svg");
   }
+
   .arrow.left.light {
     content: url("/src/assets/svg/left-arrow-black.svg");
   }
+
   .arrow.right.light {
     content: url("/src/assets/svg/right-arrow-black.svg");
   }
+
   .arrow.right {
     position: absolute;
     top: 50%;
     left: 77vw;
   }
+
   .arrow:hover {
     opacity: 0.5;
   }

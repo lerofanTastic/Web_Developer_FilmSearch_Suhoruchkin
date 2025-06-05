@@ -5,22 +5,26 @@
   flex-direction: column;
   align-items: center;
 }
+
 .main.dark {
   background-color: #1d1d1d;
 }
+
 .main.light {
   background-color: white;
 }
+
 .poster {
   margin-top: 7.23vw;
   margin-right: 6.61vw;
   margin-left: 15vw;
-  /* width: 50%; */
 }
+
 .bigCard {
   display: flex;
   flex-direction: row;
 }
+
 .description {
   margin-top: 7.23vw;
   display: flex;
@@ -36,18 +40,23 @@
   letter-spacing: 0%;
   width: 50%;
 }
+
 .description.dark h1 {
   color: white;
 }
+
 .description.light h1 {
   color: black;
 }
+
 .description.dark h2 {
   color: white;
 }
+
 .description.light h2 {
   color: black;
 }
+
 .description h2 {
   font-family: Inter;
   font-weight: 600;
@@ -55,16 +64,19 @@
   line-height: 135%;
   letter-spacing: 0%;
 }
+
 .information {
   display: flex;
   flex-direction: column;
 }
+
 .informationType {
   display: flex;
   flex-direction: row;
   gap: 3.125vw;
   margin-bottom: 1.82vw;
 }
+
 .typeFirst {
   font-family: Inter;
   font-weight: 600;
@@ -74,6 +86,7 @@
   color: #7d7d7d;
   width: 15.625vw;
 }
+
 .typeSecond {
   font-family: Inter;
   font-weight: 600;
@@ -82,9 +95,11 @@
   letter-spacing: 0%;
   width: 26.04vw;
 }
+
 .typeSecond.dark {
   color: white;
 }
+
 .typeSecond.light {
   color: black;
 }
@@ -93,6 +108,7 @@
   position: absolute;
   visibility: hidden;
 }
+
 .mainHeaderMob.dark {
   color: white;
 }
@@ -105,10 +121,12 @@
   .main {
     align-items: normal;
   }
+
   .bigCard {
     flex-direction: column;
     gap: 0px;
   }
+
   .poster {
     flex: none !important;
     margin-left: 8.05vw;
@@ -117,24 +135,27 @@
     width: 73.05vw;
     height: 101.94vw;
   }
+
   .mainHeaderMob {
     position: relative;
     visibility: visible;
     font-family: Inter;
     font-weight: 600;
     font-size: 7vw;
-    line-height: 1.2; /* уменьшаем межстрочный интервал */
+    line-height: 1.2;
     letter-spacing: 0%;
     color: white;
     margin-left: 8.33vw;
     margin-top: 10vw;
-    word-wrap: break-word; /* добавляем переносы слов */
-    hyphens: auto; /* добавляем переносы слов с дефисами */
+    word-wrap: break-word;
+    hyphens: auto;
     overflow-wrap: break-word;
   }
+
   .description {
     margin-left: 8.33vw;
   }
+
   .description h2 {
     margin-bottom: 12.5vw;
     font-family: Inter;
@@ -143,14 +164,17 @@
     line-height: 120%;
     letter-spacing: 0%;
   }
+
   .description h1 {
     visibility: hidden;
     position: absolute;
   }
+
   .informationType {
     flex-direction: column;
     margin-bottom: 5.55vw;
   }
+
   .typeFirst {
     font-family: Inter;
     font-weight: 500;
@@ -159,6 +183,7 @@
     letter-spacing: 0%;
     width: 90vw;
   }
+
   .typeSecond {
     font-family: Inter;
     font-weight: 600;
@@ -176,11 +201,13 @@
     line-height: 120%;
     letter-spacing: 0%;
   }
+
   .reviewsContainer {
     gap: 10vw;
     flex-direction: column;
     margin-bottom: 25.83vw;
   }
+
   .reviewBox {
     background-color: white;
     margin: 0;
@@ -188,6 +215,7 @@
     width: 90vw;
     height: 100%;
   }
+
   .reviewBox h2 {
     margin-left: 6.66vw;
     font-family: Inter;
@@ -197,6 +225,7 @@
     letter-spacing: 0%;
     color: black;
   }
+
   .reviewBox p {
     margin-left: 6.66vw;
     font-family: Inter;
@@ -206,10 +235,12 @@
     letter-spacing: 0%;
     color: black;
   }
+
   .whiteStarContainer {
     position: absolute;
     visibility: hidden;
   }
+
   .blackStarContainer {
     position: relative;
     visibility: visible;
@@ -217,10 +248,12 @@
     flex-direction: row;
     margin-left: 6.66vw;
   }
+
   .starWrapper {
     width: 6.66vw;
     height: 6.66vw;
   }
+
   .arrow {
     visibility: hidden;
     position: absolute;

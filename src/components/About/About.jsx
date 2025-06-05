@@ -1,11 +1,7 @@
 import React from "react";
 import styles from "./About.module.css";
 import { Card } from "../Card/Card.jsx";
-import { useParams } from "react-router-dom";
-import { VideoPlayer } from "../VideoPlayer/VideoPlayer.jsx";
-import { GalleryCarousel } from "../GalleryCarousel/GalleryCarousel.jsx";
 import { useTheme } from "../../context/Theme/themeContext";
-import { Reviews } from "../Reviews/Reviews.jsx";
 
 export const About = ({ movie }) => {
   const { theme } = useTheme();

@@ -10,7 +10,6 @@ export const Thanks = () => {
       <div className={`${styles.text} ${styles[theme]}`}>
         <h1>Отдельное спасибо ребятам за помощь с лимитом API</h1>
       </div>
-
       <div className={styles.blocks}>
         {thanksData.map((person, idx) => (
           <div className={styles.person} key={idx}>
