@@ -1,50 +1,62 @@
-const API_BASE_URL = "https://api.kinopoisk.dev/v1.4";
-const API_V1_URL = "https://api.kinopoisk.dev/v1";
-const API_KEY = import.meta.env.VITE_API_KEY;
+const API_BASE_URL_V14 = "https://api.kinopoisk.dev/v1.4";
+const API_BASE_URL_V1  = "https://api.kinopoisk.dev/v1";
+const API_KEY          = import.meta.env.VITE_API_KEY;
+const CACHE_TTL_MS     = 24 * 60 * 60 * 1000; // 24 часа
 
 /**
- * Универсальная функция для GET-запросов к API Кинопоиска
- * @param {string} resource - путь ресурса, например 'movie'
- * @param {object} params - объект с query-параметрами
- * @returns {Promise<object>} - результат запроса
+ * Универсальная обёртка для запросов к разным версиям API
+ * @param {string} resource — путь ресурса, например "movie" или "movie/search"
+ * @param {object} params — query-параметры (значения могут быть строками, числами или массивами)
+ * @param {object} [options]
+ * @param {"v1"|"v1.4"} [options.version="v1.4"] — версия API
+ * @param {AbortSignal} [options.signal] — сигнал отмены запроса
+ * @returns {Promise<object>}
  */
-export async function kinopoiskGet(resource, params = {}) {
-  const url = new URL(`${API_BASE_URL}/${resource}`);
+export async function kinopoiskGet(
+  resource,
+  params = {},
+  { version = "v1.4", signal } = {}
+) {
+  const base = version === "v1" ? API_BASE_URL_V1 : API_BASE_URL_V14;
+  const url  = new URL(`${base}/${resource}`);
 
+  // Собираем query-параметры, учитываем массивы
   Object.entries(params).forEach(([key, value]) => {
+    if (value == null || value === "") return;
     if (Array.isArray(value)) {
-      value.forEach((val) => url.searchParams.append(key, val));
+      value.forEach((v) => url.searchParams.append(key, v));
     } else {
       url.searchParams.append(key, value);
     }
   });
 
-  const response = await fetch(url.toString(), {
-    headers: {
-      "X-API-KEY": API_KEY,
-    },
+  const res = await fetch(url.toString(), {
+    headers: { "X-API-KEY": API_KEY },
+    signal,
   });
+  if (!res.ok) throw new Error(`Kinopoisk API error: ${res.status}`);
+  return res.json();
+}
 
-  if (!response.ok) {
-    throw new Error(`Ошибка запроса: ${response.status}`);
+/** Утилита: тасование Фишера–Йетса */
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = (Math.random() * (i + 1)) | 0;
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
-
-  return response.json();
+  return arr;
 }
 
-/**
- * Поиск фильмов по названию
- * @param {string} query - поисковый запрос
- * @param {number} [page=1] - страница
- */
-export function searchMovies(query, page = 1, limit = 9) {
-  return kinopoiskGet("movie/search", { query, page, limit });
+/** Поиск по названию */
+export function searchMovies(query, page = 1, limit = 9, signal) {
+  return kinopoiskGet(
+    "movie/search",
+    { query, page, limit },
+    { signal }
+  );
 }
-/**
- * Универсальный поиск фильмов по фильтрам
- * @param {object} filters - { genre, country, rating, year, page, limit }
- * @returns {Promise<object>}
- */
+
+/** Универсальный поиск фильмов и мультфильмов */
 export function universalMovieSearch({
   genre,
   country,
@@ -59,105 +71,72 @@ export function universalMovieSearch({
     page,
     limit,
     selectFields: [
-      "id",
-      "name",
-      "alternativeName",
-      "poster",
-      "genres",
-      "countries",
-      "rating",
-      "year",
+      "id", "name", "alternativeName",
+      "poster", "genres", "countries", "rating", "year"
     ],
-    notNullFields: "poster.url",
-    type: ["movie", "cartoon"], // <--- добавлено!
+    notNullFields: ["poster.url", "rating.kp", "name"],
+    type: ["movie", "cartoon"],
+    "rating.kp": rating || "1-10",
   };
-  if (genre && genre !== "") params["genres.name"] = genre;
-  if (country && country !== "") params["countries.name"] = country;
-  if (rating && rating !== "") {
-    params["rating.kp"] = rating;
-  } else {
-    params["rating.kp"] = "1-10";
-  }
-  if (year !== "") params["year"] = year;
-  if (sortField) params["sortField"] = sortField;
-  if (signal) params["signal"] = signal;
 
-  return kinopoiskGet("movie", params);
+  if (genre)  params["genres.name"]    = genre;
+  if (country) params["countries.name"] = country;
+  if (year)    params["year"]           = year;
+  if (sortField) params.sortField       = sortField;
+
+  return kinopoiskGet("movie", params, { signal });
 }
 
-export function getSixMovies() {
-  return fetch(
-    "https://api.kinopoisk.dev/v1.4/movie?page=1&limit=6&notNullFields=poster.url&notNullFields=rating.kp&notNullFields=name&rating.kp=%210",
+/** Случайная подборка из N фильмов */
+export function getSixMovies({ count = 6, signal } = {}) {
+  return kinopoiskGet(
+    "movie",
     {
-      headers: { "X-API-KEY": API_KEY },
-    }
-  )
-    .then((res) => {
-      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
-      return res.json();
-    })
-    .then((data) => {
-      // Перемешать массив фильмов для "рандома"
-      if (Array.isArray(data.docs)) {
-        for (let i = data.docs.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [data.docs[i], data.docs[j]] = [data.docs[j], data.docs[i]];
-        }
-        return data.docs;
-      }
-      return [];
-    });
+      page:       1,
+      limit:      count,
+      notNullFields: ["poster.url","rating.kp","name"],
+      "rating.kp": "1-10",
+    },
+    { signal }
+  ).then(data => Array.isArray(data.docs) ? shuffle(data.docs) : []);
 }
 
-export function getNineMovies() {
-  return fetch(
-    "https://api.kinopoisk.dev/v1.4/movie?page=1&limit=9&type=movie&type=cartoon&notNullFields=poster.url&notNullFields=rating.kp&notNullFields=name&rating.kp=%210",
-    {
-      headers: { "X-API-KEY": API_KEY },
-    }
-  )
-    .then((res) => {
-      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
-      return res.json();
-    })
-    .then((data) => {
-      if (Array.isArray(data.docs)) {
-        for (let i = data.docs.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [data.docs[i], data.docs[j]] = [data.docs[j], data.docs[i]];
-        }
-        return data.docs;
-      }
-      return [];
-    });
+/** Случайная подборка из 9 фильмов и мультфильмов */
+export function getNineMovies(signal) {
+  return getSixMovies({ count: 9, signal });
 }
-export function getNineSeries() {
-  return fetch(
-    "https://api.kinopoisk.dev/v1.4/movie?page=1&limit=9&type=animated-series&type=anime&type=tv-series&notNullFields=poster.url&notNullFields=rating.kp&notNullFields=name&rating.kp=%210",
+
+/** Случайная подборка сериалов (аниме, ТВ, мультсериалы) */
+export function getNineSeries(signal) {
+  return kinopoiskGet(
+    "movie",
     {
-      headers: { "X-API-KEY": API_KEY },
-    }
-  )
-    .then((res) => {
-      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
-      return res.json();
-    })
-    .then((data) => {
-      if (Array.isArray(data.docs)) {
-        for (let i = data.docs.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [data.docs[i], data.docs[j]] = [data.docs[j], data.docs[i]];
-        }
-        return data.docs;
-      }
-      return [];
-    });
+      page:  1,
+      limit: 9,
+      type:  ["animated-series","tv-series","anime"],
+      notNullFields: ["poster.url","rating.kp","name"],
+      "rating.kp": "1-10",
+    },
+    { signal }
+  ).then(data => Array.isArray(data.docs) ? shuffle(data.docs) : []);
 }
+
+/**
+ * Поиск сериалов по множеству фильтров
+ * @param {string[]} genresArr
+ * @param {string[]} countriesArr
+ * @param {string[]} ratingArr — целые значения рейтинга
+ * @param {number[]} yearArr
+ * @param {number} page
+ * @param {number} limit
+ * @param {string} sortField
+ * @param {AbortSignal} signal
+ */
 export function universalSeriesSearch({
-  genresArr = [],
-  countriesArr = [],
-  ratingArr = [],
-  yearArr = [],
+  genresArr     = [],
+  countriesArr  = [],
+  ratingArr     = [],
+  yearArr       = [],
   page = 1,
   limit = 9,
   sortField,
@@ -167,165 +146,87 @@ export function universalSeriesSearch({
     page,
     limit,
     selectFields: [
-      "id",
-      "name",
-      "alternativeName",
-      "poster",
-      "genres",
-      "countries",
-      "rating",
-      "year",
+      "id","name","alternativeName",
+      "poster","genres","countries","rating","year"
     ],
-    notNullFields: "poster.url",
-    type: ["animated-series", "tv-series", "anime"],
+    notNullFields: ["poster.url","rating.kp","name"],
+    type: ["animated-series","tv-series","anime"],
   };
 
-  // Передаём только первый выбранный вариант каждого фильтра
-  if (genresArr.length > 0) params["genres.name"] = genresArr[0];
-  if (countriesArr.length > 0) params["countries.name"] = countriesArr[0];
-  if (ratingArr.length > 0) params["rating.kp"] = ratingArr[0];
-  if (yearArr.length > 0) params["year"] = yearArr[0];
-  if (sortField) params["sortField"] = sortField;
-  if (signal) params["signal"] = signal;
+  if (genresArr.length)    params["genres.name"]    = genresArr;
+  if (countriesArr.length) params["countries.name"]  = countriesArr;
+  if (ratingArr.length)    params["rating.kp"]       = ratingArr;
+  if (yearArr.length)      params["year"]            = yearArr;
+  if (sortField)           params.sortField         = sortField;
 
-  return kinopoiskGet("movie", params).then(data => {
-    // Строгая фильтрация по всем выбранным жанрам
-    if (genresArr.length > 1 && Array.isArray(data.docs)) {
-      data.docs = data.docs.filter(movie =>
-        genresArr.every(g =>
-          movie.genres && movie.genres.some(genreObj => genreObj.name === g)
-        )
-      );
+  return kinopoiskGet("movie", params, { signal });
+}
+
+/** Кеширование возможных жанров и стран с TTL */
+function cachedFetch(key, factory) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (raw) {
+      const { ts, data } = JSON.parse(raw);
+      if (Date.now() - ts < CACHE_TTL_MS) {
+        return Promise.resolve(data);
+      }
     }
-    // Строгая фильтрация по всем выбранным странам
-    if (countriesArr.length > 1 && Array.isArray(data.docs)) {
-      data.docs = data.docs.filter(movie =>
-        countriesArr.every(c =>
-          movie.countries && movie.countries.some(countryObj => countryObj.name === c)
-        )
-      );
-    }
-    // Строгая фильтрация по всем выбранным рейтингам
-    if (ratingArr.length > 1 && Array.isArray(data.docs)) {
-      data.docs = data.docs.filter(movie =>
-        ratingArr.every(r =>
-          movie.rating && movie.rating.kp && r == Math.floor(movie.rating.kp)
-        )
-      );
-    }
-    // Строгая фильтрация по всем выбранным годам
-    if (yearArr.length > 1 && Array.isArray(data.docs)) {
-      data.docs = data.docs.filter(movie =>
-        yearArr.every(y => movie.year === y)
-      );
-    }
+  } catch { /* игнорируем */ }
+
+  return factory().then((data) => {
+    localStorage.setItem(key, JSON.stringify({ ts: Date.now(), data }));
     return data;
   });
 }
 
+/** Получить список всех жанров */
 export function getGenres() {
-  const cacheKey = "genresCache";
-  const cached = localStorage.getItem(cacheKey);
-  if (cached) {
-    try {
-      return Promise.resolve(JSON.parse(cached));
-    } catch {
-      // Если вдруг localStorage битый — игнорируем и делаем запрос
-    }
-  }
-  return fetch(
-    `${API_V1_URL}/movie/possible-values-by-field?field=genres.name`,
-    {
-      headers: { "X-API-KEY": API_KEY },
-    }
-  )
-    .then((res) => {
-      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
-      return res.json();
-    })
-    .then((data) => {
-      localStorage.setItem(cacheKey, JSON.stringify(data));
-      return data;
-    });
+  return cachedFetch("kp_genres", () =>
+    kinopoiskGet(
+      "movie/possible-values-by-field",
+      { field: "genres.name" },
+      { version: "v1" }
+    )
+  );
 }
 
+/** Получить список всех стран */
 export function getCountries() {
-  const cacheKey = "countriesCache";
-  const cached = localStorage.getItem(cacheKey);
-  if (cached) {
-    try {
-      return Promise.resolve(JSON.parse(cached));
-    } catch {
-      // Если вдруг localStorage битый — игнорируем и делаем запрос
-    }
-  }
-  return fetch(
-    `${API_V1_URL}/movie/possible-values-by-field?field=countries.name`,
-    {
-      headers: { "X-API-KEY": API_KEY },
-    }
-  )
-    .then((res) => {
-      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
-      return res.json();
-    })
-    .then((data) => {
-      localStorage.setItem(cacheKey, JSON.stringify(data));
-      return data;
-    });
+  return cachedFetch("kp_countries", () =>
+    kinopoiskGet(
+      "movie/possible-values-by-field",
+      { field: "countries.name" },
+      { version: "v1" }
+    )
+  );
 }
-/**
- * Получить детальную информацию о фильме или сериале по id
- * @param {number|string} id - ID фильма или сериала
- * @returns {Promise<object>}
- */
-export function getMovieById(id) {
-  return fetch(`https://api.kinopoisk.dev/v1.4/movie/${id}`, {
-    headers: { "X-API-KEY": API_KEY },
-  }).then((res) => {
-    if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
-    return res.json();
-  });
+
+/** Детальная информация о фильме/сериале */
+export function getMovieById(id, signal) {
+  return kinopoiskGet(`movie/${id}`, {}, { signal });
 }
-/**
- * Получить изображения для фильма/сериала по id
- * @param {number|string} id - ID фильма или сериала
- * @param {number} [limit=10] - Количество изображений
- * @returns {Promise<string[]>} - Массив ссылок на изображения
- */
-export function getImagesByMovieId(id, limit = 10) {
-  return fetch(
-    `https://api.kinopoisk.dev/v1.4/image?page=1&limit=${limit}&movieId=${id}`,
-    {
-      headers: { "X-API-KEY": API_KEY },
-    }
-  )
-    .then((res) => {
-      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
-      return res.json();
-    })
-    .then((data) =>
-      Array.isArray(data.docs)
-        ? data.docs.map((img) => img.url).filter(Boolean)
-        : []
-    );
+
+/** Получить до `limit` обложек/кадров по ID */
+export function getImagesByMovieId(id, limit = 10, signal) {
+  return kinopoiskGet(
+    "image",
+    { page: 1, limit, movieId: id },
+    { version: "v1.4", signal }
+  ).then(data =>
+    Array.isArray(data.docs)
+      ? data.docs.map((img) => img.url).filter(Boolean)
+      : []
+  );
 }
-/**
- * Получить отзывы (рецензии) для фильма/сериала по id
- * @param {number|string} id - ID фильма или сериала
- * @param {number} [limit=2] - Количество отзывов
- * @returns {Promise<object[]>} - Массив отзывов
- */
-export function getReviewsByMovieId(id, limit = 2) {
-  return fetch(
-    `https://api.kinopoisk.dev/v1.4/review?page=1&limit=${limit}&movieId=${id}`,
-    {
-      headers: { "X-API-KEY": API_KEY },
-    }
-  )
-    .then((res) => {
-      if (!res.ok) throw new Error(`Ошибка запроса: ${res.status}`);
-      return res.json();
-    })
-    .then((data) => (Array.isArray(data.docs) ? data.docs : []));
+
+/** Получить до `limit` рецензий по ID */
+export function getReviewsByMovieId(id, limit = 2, signal) {
+  return kinopoiskGet(
+    "review",
+    { page: 1, limit, movieId: id },
+    { version: "v1.4", signal }
+  ).then(data =>
+    Array.isArray(data.docs) ? data.docs : []
+  );
 }

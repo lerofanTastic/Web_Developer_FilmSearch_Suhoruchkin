@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { SingleTarget } from "./components/SingleTarget/SingleTarget";
 import { ThemeProvider } from "./context/Theme/themeContext";
 import { Thanks } from "./components/Thanks/Thanks";
+import { Error } from "./components/Error/Error";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/movie/:id" element={<SingleTarget />} />
           <Route path="/series" element={<Series />} />
           <Route path="/thanks" element={<Thanks />} />
+          <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
       </div>
