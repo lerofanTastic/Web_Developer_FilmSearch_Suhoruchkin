@@ -3,7 +3,8 @@ import styles from "./GalleryCarousel.module.css";
 import { useTheme } from "../../context/Theme/themeContext";
 
 export const GalleryCarousel = ({ src }) => {
-  const { theme, isMobile } = useTheme();
+  const { theme} = useTheme();
+  const [isMobile] = useState(window.innerWidth <= 768);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {

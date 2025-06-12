@@ -157,7 +157,7 @@ a {
   background-position: 100%;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .burger {
     position: relative;
     z-index: 1;
@@ -253,7 +253,7 @@ a {
     flex-direction: column;
     height: 95%;
     max-height: 95%;
-    margin-top: 31.11vw;
+    margin-top: 20vw;
     margin-bottom: 13vw;
     margin-left: 8.05vw;
     overflow: hidden;

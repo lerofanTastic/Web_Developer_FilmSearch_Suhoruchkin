@@ -9,12 +9,12 @@ import { Loading } from "../Loading/Loading";
 export const Carousel = () => {
   const { theme } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 720);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 720);
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

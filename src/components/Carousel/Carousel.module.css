@@ -69,7 +69,7 @@
   content: url("/src/assets/svg/right-arrow-black.svg");
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .main {
     height: 148.33vw;
   }

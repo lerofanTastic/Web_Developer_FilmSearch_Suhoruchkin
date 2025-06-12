@@ -46,7 +46,7 @@
     hue-rotate(265deg) brightness(97%) contrast(101%);
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .footer {
     width: 100%;
     height: 51.66vw;
@@ -64,7 +64,7 @@
   }
 
   .footerRight{
-    margin-top: 40px;
+    margin-top: 11.11vw;
   }
 
   .footerRightTop {

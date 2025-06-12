@@ -71,8 +71,8 @@
 }
 
 .avatar img:hover {
-  box-shadow: 0 0 10px rgb(255, 168, 211), 0 0 40px rgb(255, 168, 211),
-    0 0 80px rgb(255, 168, 211);
+  box-shadow: 0 0 0.52vw rgb(255, 168, 211), 0 0 2.08vw rgb(255, 168, 211),
+    0 0 4.16vw rgb(255, 168, 211);
 }
 
 .name {
@@ -95,7 +95,7 @@
   color: black;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .text h1 {
     font-size: 7vw;
     width: 70%;

@@ -13,7 +13,7 @@
 }
 
 .underOverlay h1 {
-  margin: 7.86vw 0px 0px 16.82vw;
+  margin: 7.86vw 0 0 16.82vw;
   width: 36.4vw;
   font-family: Inter;
   font-weight: 600;
@@ -23,7 +23,7 @@
 }
 
 .underOverlay p {
-  margin: 1.51vw 0px 0px 16.82vw;
+  margin: 1.51vw 0 0 16.82vw;
   width: 47.91vw;
   font-family: Inter;
   font-weight: 600;
@@ -32,7 +32,7 @@
   color: white;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .under {
     height: 162.22vw;
     width: 100%;
@@ -55,7 +55,7 @@
   
   .underOverlay p {
     margin: 0;
-    margin-top: 20px;
+    margin-top: 5.55vw;
     margin-left: 8.05vw;
     margin-right: 10.27vw;
     width: 90%;

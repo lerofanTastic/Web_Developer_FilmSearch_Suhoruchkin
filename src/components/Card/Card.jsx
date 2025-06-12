@@ -9,7 +9,7 @@ export const Card = ({
   return (
     <div className={styles.card}>
       <div className={styles.rating}>
-        <p>{rating}</p>
+        <p>{rating.toFixed(1)}</p>
       </div>
       <div className={styles.poster}>
         <img

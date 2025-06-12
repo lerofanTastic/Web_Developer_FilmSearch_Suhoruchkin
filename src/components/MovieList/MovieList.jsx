@@ -11,7 +11,7 @@ export const MovieList = ({ genre, country, rating, year }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 720);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1); // <--- добавлено
   const hasFilters =
@@ -19,7 +19,7 @@ export const MovieList = ({ genre, country, rating, year }) => {
   const cacheRef = useRef({});
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 720);
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

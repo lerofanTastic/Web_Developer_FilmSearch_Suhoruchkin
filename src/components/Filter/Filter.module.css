@@ -85,10 +85,10 @@
 
 .arrow {
   position: absolute;
-  right: 2em;
+  right: 2vw;
   top: 50%;
-  width: 16px;
-  height: 16px;
+  width: 0.6vw;
+  height: 0.6vw;
   pointer-events: none;
   transform: translateY(-50%) rotate(0deg);
   transition: transform 0.2s;
@@ -99,7 +99,12 @@
   transform: translateY(-50%) rotate(180deg);
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
+  .arrow {
+    right: 5vw;
+    width: 3vw;
+    height: 3vw;
+  }
   .mainLeft {
     width: 100%;
     height: 271.94vw;
@@ -171,7 +176,7 @@
   .mainLeft.dark {
     background-color: #1d1d1d;
   }
-  
+
   .category.dark select {
     background: black;
   }

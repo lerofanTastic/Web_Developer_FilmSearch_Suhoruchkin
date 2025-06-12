@@ -118,7 +118,7 @@
   color: black;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .noImages p {
     margin: 0;
     font-family: Inter;

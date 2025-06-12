@@ -1,9 +1,8 @@
 .main {
-  width: 100%;
+  width: 66.66vw;
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .main.dark {
@@ -17,7 +16,6 @@
 .poster {
   margin-top: 7.23vw;
   margin-right: 6.61vw;
-  margin-left: 15vw;
 }
 
 .bigCard {
@@ -117,14 +115,14 @@
   color: black;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .main {
     align-items: normal;
   }
 
   .bigCard {
     flex-direction: column;
-    gap: 0px;
+    gap: 0;
   }
 
   .poster {

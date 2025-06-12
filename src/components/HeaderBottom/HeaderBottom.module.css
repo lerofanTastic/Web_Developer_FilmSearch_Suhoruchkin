@@ -40,11 +40,11 @@
   background-repeat: no-repeat;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .headerBottom {
     display: flex;
     flex-direction: column-reverse;
-    height: 550px;
+    height: 152.77vw;
     width: 100%;
     align-items: normal;
   }
@@ -54,13 +54,13 @@
     position: static;
     display: flex;
     justify-content: center;
-    margin-bottom: 25px;
+    margin-bottom: 6.94vw;
     z-index: 1;
   }
 
   .headerArrow img {
-    width: 11px;
-    height: 26px;
+    width: 3.05vw;
+    height: 7.22vw;
   }
 
   .headerBottomLeft {
@@ -70,7 +70,7 @@
     width: 100%;
     text-align: center;
     margin: 0;
-    margin-bottom: 72px;
+    margin-bottom: 20vw;
   }
 
   .headerBottomLeft h1 {
@@ -79,7 +79,7 @@
     width: 100%;
     font-family: Inter;
     font-weight: 900;
-    font-size: 36px;
+    font-size: 10vw;
     line-height: 100%;
   }
   
