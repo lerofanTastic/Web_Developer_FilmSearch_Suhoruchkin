@@ -51,11 +51,21 @@ a {
   color: black;
 }
 
-.headerLeft img {
+.headerLeft {
   display: flex;
   margin-left: 16.14vw;
-  height: auto;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  height: 100%;
   width: 17.81vw;
+  background-image: url("/src/assets/img/logo.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 20;
 }
 
 .headerCenter {
@@ -315,7 +325,7 @@ a {
     align-items: center;
   }
 
-  .headerLeft img {
+  .logo {
     width: 60.27vw;
     height: 12.5vw;
     margin: 0;
@@ -351,7 +361,7 @@ a {
     text-align: right;
     overflow: hidden;
   }
-  
+
   .themeCheckbox {
     --toggle-size: 2vw;
   }

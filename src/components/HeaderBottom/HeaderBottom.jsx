@@ -5,7 +5,7 @@ export const HeaderBottom = () => {
   return (
     <div className={styles.headerBottom}>
       <div className={styles.headerArrow}>
-        <img src="/src/assets/svg/left-arrow.svg" alt="Стрелка" />
+        <div className={styles.arrow}></div>
       </div>
       <div className={styles.headerBottomLeft}>
         <h1>Что сегодня посмотреть?</h1>

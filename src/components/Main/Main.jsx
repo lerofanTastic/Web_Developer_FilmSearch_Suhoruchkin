@@ -5,6 +5,7 @@ import { Search } from '../Search/Search'
 import { Under } from '../Under/Under'
 import { useTheme } from "../../context/Theme/themeContext";
 import styles from "./Main.module.css"
+import { Outlet } from 'react-router-dom'
 
 export const Main = () => {
   const { theme } = useTheme();

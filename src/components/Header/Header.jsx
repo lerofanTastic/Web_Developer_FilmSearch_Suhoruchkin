@@ -15,7 +15,7 @@ export const Header = () => {
               isActive ? "nav-link-active" : "nav-link"
             }
           >
-            <img src="/src/assets/img/logo.png" alt="Логотип" />
+            <div className={styles.logo}></div>
           </NavLink>
         </div>
         <div className={styles.headerCenter}>

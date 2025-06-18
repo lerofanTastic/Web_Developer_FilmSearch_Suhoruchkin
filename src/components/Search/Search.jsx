@@ -45,13 +45,7 @@ export const Search = () => {
   return (
     <div className={styles.search}>
       <form className={styles.searchBar} onSubmit={handleSearch}>
-        <div>
-          <img
-            className={styles.searchBarIcon}
-            src="/src/assets/svg/lupa.svg"
-            alt="Поиск"
-          />
-        </div>
+        <div className={styles.searchBarIcon}></div>
         <div>
           <input
             type="search"
