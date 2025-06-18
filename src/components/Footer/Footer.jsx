@@ -18,7 +18,7 @@ export const Footer = () => {
             >
               <img
                 className={styles.svgWrapper}
-                src="./src/assets/svg/telegram.svg"
+                src={`${import.meta.env.BASE_URL}assets/svg/telegram.svg`}
                 alt="Telegram"
               />
             </a>
@@ -29,7 +29,7 @@ export const Footer = () => {
             >
               <img
                 className={styles.svgWrapper}
-                src="./src/assets/svg/vk.svg"
+                src={`${import.meta.env.BASE_URL}assets/svg/vk.svg`}
                 alt="VK"
               />
             </a>
@@ -40,7 +40,7 @@ export const Footer = () => {
             >
               <img
                 className={styles.svgWrapper}
-                src="./src/assets/svg/dzen.svg"
+                src={`${import.meta.env.BASE_URL}assets/svg/dzen.svg`}
                 alt="Dzen"
               />
             </a>
@@ -51,7 +51,7 @@ export const Footer = () => {
             >
               <img
                 className={styles.svgWrapper}
-                src="./src/assets/svg/youtube.svg"
+                src={`${import.meta.env.BASE_URL}assets/svg/youtube.svg`}
                 alt="YouTube"
               />
             </a>
@@ -61,7 +61,7 @@ export const Footer = () => {
             <Link to="/thanks">
               <img
                 className={styles.svgWrapper}
-                src="./src/assets/svg/heart.svg"
+                src={`${import.meta.env.BASE_URL}assets/svg/heart.svg`}
               />
             </Link>
           </div>

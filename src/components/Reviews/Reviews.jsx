@@ -4,6 +4,7 @@ import { useTheme } from "../../context/Theme/themeContext";
 
 export const Reviews = ({ reviews = [] }) => {
   const { theme, isMobile } = useTheme();
+  const base = import.meta.env.BASE_URL
 
   if (!reviews || reviews.length === 0) {
     return (
@@ -14,14 +15,13 @@ export const Reviews = ({ reviews = [] }) => {
     );
   }
 
-  const starSrc =
-    isMobile || theme === "light"
-      ? "/src/assets/svg/star-black.svg"
-      : "/src/assets/svg/star-white.svg";
-  const starTransSrc =
-    isMobile || theme === "light"
-      ? "/src/assets/svg/star-black-trans.svg"
-      : "/src/assets/svg/star-white-trans.svg";
+  const starSrc = isMobile || theme === 'light'
+    ? `${base}assets/svg/star-black.svg`
+    : `${base}assets/svg/star-white.svg`
+
+  const starTransSrc = isMobile || theme === 'light'
+    ? `${base}assets/svg/star-black-trans.svg`
+    : `${base}assets/svg/star-white-trans.svg`
 
   return (
     <div className={`${styles.reviews} ${styles[theme]}`}>
