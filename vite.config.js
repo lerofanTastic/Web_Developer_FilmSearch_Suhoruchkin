@@ -5,6 +5,10 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/Web_Developer_FilmSearch_Suhoruchkin/",
+  build: {
+    outDir: 'docs',
+    emptyOutDir: true
+  },
   server: {
     proxy: {
       "/api": {
